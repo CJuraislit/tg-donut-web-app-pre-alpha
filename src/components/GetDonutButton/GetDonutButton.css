@@ -1,0 +1,18 @@
+.GetDonutButton {
+    width: 360px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 13px;
+    padding: 70px 5px;
+    color: #000;
+}
+
+.GetDonutButton.active {
+    background-color: #fff;
+    box-shadow: 10px 5px 0 rgba(206, 0, 120, 0.6);
+}
+
+.GetDonutButton.inactive {
+    background-color: #42413F;
+}
