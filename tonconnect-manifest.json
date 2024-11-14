@@ -1,0 +1,10 @@
+{
+  "url": "https://4061-135-125-151-37.ngrok-free.app",
+  "name": "Donut",
+  "description": "Description",
+  "iconUrl": "https://ton.vote/logo.png",
+  "permissions": [
+    "ton_client",
+    "account_interaction"
+  ]
+}
