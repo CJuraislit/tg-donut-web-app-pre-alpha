@@ -1,9 +1,7 @@
 # Node.js dependencies
 node_modules/
 
-# Build output
-dist/
-build/
+
 
 # TypeScript generated files
 *.tsbuildinfo
