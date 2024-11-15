@@ -1,0 +1,10 @@
+{
+  "url": "https://test-machine.gintonic.work/",
+  "name": "Donut",
+  "description": "Description",
+  "iconUrl": "https://ton.vote/logo.png",
+  "permissions": [
+    "ton_client",
+    "account_interaction"
+  ]
+}
