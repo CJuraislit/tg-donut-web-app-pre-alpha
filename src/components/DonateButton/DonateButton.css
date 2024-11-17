@@ -1,0 +1,23 @@
+.donate_button {
+    min-width: 360px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 13px;
+}
+
+.donate_button:disabled {
+    cursor: not-allowed;
+}
+
+.donate_button.active {
+    background-color: #fff;
+    color: #090909;
+    box-shadow: 10px 5px 5px  rgba(253, 82, 174, 0.9);
+}
+
+.donate_button.inactive {
+    background-color: #090909;
+    color: #42413F;
+    border: 2px solid #42413F;
+}

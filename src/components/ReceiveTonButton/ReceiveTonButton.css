@@ -1,4 +1,4 @@
-.get-donut-button {
+.receive_ton_button {
     width: 360px;
     height: 53px;
     text-align: center;
@@ -7,13 +7,6 @@
     border-radius: 13px;
     padding: 10px 5px;
     color: #000;
-}
-
-.get-donut-button.active {
     background-color: #fff;
-    box-shadow: 10px 5px 0 rgba(206, 0, 120, 0.6);
-}
-
-.get-donut-button.inactive {
-    background-color: #42413F;
+    box-shadow: 10px 5px 5px  rgba(253, 82, 174, 0.9);
 }

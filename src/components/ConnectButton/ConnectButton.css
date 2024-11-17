@@ -9,7 +9,7 @@ button[data-tc-button="true"] {
     text-align: center;
     font-size: 20px;
     padding: 10px;
-    box-shadow: 10px 5px 0 rgba(206, 0, 120, 0.6); /* Розовая тень */
+    box-shadow: 10px 5px 5px  rgba(253, 82, 174, 0.9);
 }
 
 button[data-tc-button="true"]:hover {

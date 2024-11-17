@@ -1,0 +1,16 @@
+.ton_amount {
+    min-width: 360px;
+    height: 53px;
+    text-align: center;
+    background-color: #090909;
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+    border: 2px solid #282828;
+    border-radius: 13px;
+}
+
+.ton_amount.active {
+    box-shadow: 10px 5px 5px  rgba(253, 82, 174, 0.9);
+    border: 2px solid #ffffff;
+}
