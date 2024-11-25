@@ -4,16 +4,20 @@ import './YourAmountButton.css'
 interface YourAmountButtonProps {
     selectedOption:  number | null ;
     setSelectedOption: (amount: number) => void;
+    customAmount: string,
+    setCustomAmount: (value: string) => void;
 }
 
-const YourAmountButton: FC<YourAmountButtonProps> = ({selectedOption, setSelectedOption}) => {
+const YourAmountButton: FC<YourAmountButtonProps> = ({selectedOption, setSelectedOption, customAmount, setCustomAmount}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [customAmount, setCustomAmount] = useState<string>(selectedOption ? selectedOption.toString : '');
 
-    const openModal = () => setIsModalOpen(true);
+    const openModal = () => {
+        setIsModalOpen(true)
+        setSelectedOption(null)
+    };
     const closeModal = () => {
         setIsModalOpen(false)
-        setCustomAmount(selectedOption ? selectedOption.toString() : '')
+        setCustomAmount('')
     }
 
     const confirmAmount = () => {
@@ -25,21 +29,26 @@ const YourAmountButton: FC<YourAmountButtonProps> = ({selectedOption, setSelecte
         }
     }
 
-    const isActive = !!selectedOption;
+    const isActive = !!selectedOption && customAmount !=='';
 
-  return (
+    const isConfirmButtonActive = customAmount !== '' && /^[1-9]\d*$/.test(customAmount);
+
+
+    return (
     <>
         <button
+            className={`your-amount-button ${isActive ? 'active' : ''}`}
             onClick={openModal}
         >
-            {selectedOption ? `${selectedOption} TON` : 'Your Amount'}
+            {customAmount ? `${customAmount} TON` : 'Your Amount'}
         </button>
         {isModalOpen && (
             <div className={'modal'}>
                 <div className={'modal-content'}>
-                    <h3>Enter Your Amount</h3>
+                    <div className={'modal_header'}>ENTER YOUR AMOUNT</div>
                     <input
                         type="number"
+                        inputMode="numeric"
                         value={customAmount}
                         onChange={(e) => setCustomAmount(e.target.value)}
                         onKeyDown={(e) => {
@@ -47,13 +56,16 @@ const YourAmountButton: FC<YourAmountButtonProps> = ({selectedOption, setSelecte
                                 e.preventDefault();
                             }
                         }}
-                        placeholder={"Enter Amount In TON"}
+                        placeholder={"ENTER AMOUNT IN TON"}
                         className={'custom-amount-input'}
                         min={1}
                         step={1}
                     />
                     <div className={'modal-actions'}>
-                        <button onClick={confirmAmount} className={'confirm-button'}>
+                        <button onClick={confirmAmount}
+                                className={`confirm-button ${isConfirmButtonActive ? '' : 'disabled'}`}
+                                disabled={!isConfirmButtonActive}
+                        >
                             Confirm
                         </button>
                         <button onClick={closeModal} className={'cancel-button'}>

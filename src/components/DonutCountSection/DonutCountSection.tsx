@@ -2,26 +2,18 @@ import React, {FC, useEffect, useState} from 'react';
 import './DonutCountSection.css'
 
 type DonutCountSectionProps = {
-    fetchUserPoints: () => Promise<number>; // функция для получения очков с бэкенда
+    points: number | null;
+    updatePoints: () => void;
 };
-const DonutCountSection:FC<DonutCountSectionProps> = ({fetchUserPoints}) => {
-    const [points, setPoints] = useState<number | null>(null);
+const DonutCountSection:FC<DonutCountSectionProps> = ({points, updatePoints}) => {
 
     useEffect(() => {
-        const loadPoints = async () => {
-            try {
-                const fetchedPoints = await fetchUserPoints();
-                setPoints(fetchedPoints);
-            } catch (error) {
-                console.error('Ошибка при загрузке очков:', error);
-            }
-        };
-        loadPoints();
-    }, [fetchUserPoints])
+        updatePoints()
+    }, [updatePoints])
 
     return (
         <div className={'DonutCountSection_container'}>
-            <h2 className={'donut_count'}>{points !== null ? points : 'Loadinng...'}</h2>
+            <h2 className={'donut_count'}>{points !== null ? points : '0'}</h2>
             <p>$DONUT</p>
         </div>
     );

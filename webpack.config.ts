@@ -43,6 +43,13 @@ export default (env: EnvVariables) => {
         module: {
             rules: [
                 {
+                    test: /\.(png|jpe?g|gif|svg)$/i,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'images/[hash][ext][query]', // Кастомизация структуры файлов
+                    },
+                },
+                {
                     test: /\.css$/i,
                     use: [
                         isDev ? 'style-loader' : MiniCssExtractPlugin.loader,

@@ -4,20 +4,22 @@
     box-sizing: border-box;
 }
 
-body {
+html, body {
     background: #090909;
-    height: 100vh;
+    height: 100%;
+    overflow: visible;
 }
 
 .app-container {
-    margin-top: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     /*justify-content: center;*/
-    height: 100vh; /* Контейнер занимает полную высоту экрана */
-    width: 100%;
+    padding-top: 70px;
+    min-height: 100vh; /* Растягиваем на полную высоту родителя */
+    width: 100%; /* Растягиваем на полную ширину */
+    overflow: hidden; /* Убираем прокрутку внутри контейнера */
 }
 
 .ton_amount_container {

@@ -1,27 +1,27 @@
 .your-amount-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #d3d3d3; /* Неактивная кнопка */
-    color: #42413f;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s;
+    min-width: 360px;
+    height: 53px;
+    text-align: center;
+    background-color: #090909;
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+    border: 2px solid #282828;
+    border-radius: 13px;
 }
 
 .your-amount-button.active {
-    background-color: #4caf50; /* Активная кнопка */
-    color: white;
+    box-shadow: 10px 5px 5px  rgba(253, 82, 174, 0.9);
+    border: 2px solid #ffffff;
 }
 
-.your-amount-button:hover {
-    background-color: #c0c0c0;
-}
+/*.your-amount-button:hover {*/
+/*    background-color: #c0c0c0;*/
+/*}*/
 
-.your-amount-button.active:hover {
-    background-color: #45a049;
-}
+/*.your-amount-button.active:hover {*/
+/*    background-color: #45a049;*/
+/*}*/
 
 .modal {
     position: fixed;
@@ -35,11 +35,21 @@
     justify-content: center;
 }
 
+/*.modal-content {*/
+/*    background-color: white;*/
+/*    padding: 20px;*/
+/*    border-radius: 10px;*/
+/*    width: 300px;*/
+/*    text-align: center;*/
+/*}*/
+
 .modal-content {
-    background-color: white;
+    background-color: #000000;
+    color: #fff;
     padding: 20px;
-    border-radius: 10px;
-    width: 300px;
+    border: 2px solid #797874;
+    border-radius: 30px;
+    width: 388px;
     text-align: center;
 }
 
@@ -51,35 +61,70 @@
 
 .custom-amount-input {
     width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
+    padding: 18px 46px;
+    margin-top: 25px;
+    color: #ffffff;
+    background-color: #000000;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #797874;
+    border-radius: 15px;
+    outline: none;
+}
+
+.custom-amount-input::placeholder {
+    color: #797874; /* Белый цвет для текста плейсхолдера */
+    font-weight: bold; /* Жирный текст плейсхолдера */
+    text-align: center; /* Центровка текста */
+}
+
+.custom-amount-input:focus::placeholder {
+    opacity: 0; /* Скрывает плейсхолдер при фокусе */
+}
+
+.custom-amount-input::-webkit-outer-spin-button,
+.custom-amount-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .confirm-button {
-    padding: 10px 20px;
-    background-color: #4caf50;
+    padding: 10px 40px;
+    background-color: #000000;
+    font-weight: bold;
     color: white;
-    border: none;
-    border-radius: 5px;
+    border: 2px solid #797874;
+    border-radius: 15px;
     cursor: pointer;
+}
+
+.confirm-button.disabled {
+    color: #797874;
+    cursor: not-allowed;
 }
 
 .cancel-button {
-    padding: 10px 20px;
-    background-color: #f44336;
+    padding: 10px 40px;
+    background-color: #000000;
+    font-weight: bold;
     color: white;
-    border: none;
-    border-radius: 5px;
+    border: 2px solid #797874;
+    border-radius: 15px;
     cursor: pointer;
 }
 
-.confirm-button:hover {
-    background-color: #45a049;
+.confirm-button:not(.disabled):hover {    box-shadow: 5px 5px 5px  rgba(253, 82, 174, 0.9);
+
+
 }
 
 .cancel-button:hover {
-    background-color: #e53935;
+    box-shadow: 5px 5px 5px  rgba(253, 82, 174, 0.9);
+}
+
+.modal_header {
+    font-family: Arial, sans-serif; /* Устанавливает Arial для блока */
+    font-size: 25px;
+    font-weight: bold;
 }

@@ -11,7 +11,7 @@
 
 .get-donut-button.active {
     background-color: #fff;
-    box-shadow: 10px 5px 0 rgba(206, 0, 120, 0.6);
+    box-shadow: 10px 5px 5px  rgba(253, 82, 174, 0.9);
 }
 
 .get-donut-button.inactive {
