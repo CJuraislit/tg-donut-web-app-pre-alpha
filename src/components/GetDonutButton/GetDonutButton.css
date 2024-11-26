@@ -7,6 +7,7 @@
     border-radius: 13px;
     padding: 10px 5px;
     color: #000;
+    border: none;
 }
 
 .get-donut-button.active {
