@@ -1,0 +1,30 @@
+.welcome-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #090909;
+    text-align: center;
+}
+
+.welcome-content {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.welcome-content h1 {
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+.welcome-content img {
+    margin-top: 1rem;
+    width: 100px;
+    height: 100px;
+}
+
+.text-with-shadow {
+    color: #fff;
+    filter: drop-shadow(10px 5px 5px rgba(253, 82, 174, 0.9));
+}

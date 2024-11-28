@@ -1,5 +1,7 @@
 .donate_button {
     min-width: 360px;
+    height: 53px;
+    padding: 10px 5px;
     text-align: center;
     font-size: 25px;
     font-weight: bold;

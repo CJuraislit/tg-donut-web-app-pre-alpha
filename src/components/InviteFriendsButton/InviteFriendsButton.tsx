@@ -11,7 +11,6 @@ const InviteFriendsButton = () => {
         }
 
         const referralUrl = `https://t.me/FrontDonutTestBot?startapp=ref_${user.id}`
-        // https://t.me/FrontDonutTestBot/app?startapp=ref_<referral_code>
         const message = `Join me in Donut, let's cook together! ${referralUrl}`
 
         tg.openTelegramLink(

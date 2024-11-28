@@ -10,8 +10,13 @@
     import ReceiveTonButton from "./ReceiveTonButton/ReceiveTonButton";
     import InviteFriendsButton from "./InviteFriendsButton/InviteFriendsButton";
     import YourAmountButton from "./YourAmountButton/YourAmountButton";
-    import DonutLogo from '../assets/images/DonutLogo.png'
-    import {fetchUserPoints, registerUser, registerUserWithReferral} from "../api/userService";
+    import DonutLogo from '../assets/images/DonutLogo.svg'
+    import {fetchUserPoints, fetchUserTonAmount, registerUser, registerUserWithReferral} from "../api/userService";
+    import WelcomeScreen from "./WelcomeScreen/WelcomeScreen";
+    import {CSSTransition} from "react-transition-group";
+    import NavigationButtons from "./NavigationButtons/NavigationButtons";
+    import FriendsHeader from "./FriendsHeader/FriendsHeader";
+    
 
     export const App = () => {
         const {tg, user, expand} = useTelegram()
@@ -23,6 +28,7 @@
         const [selectedOption, setSelectedOption] = useState<number | null>(null)
         const [customAmount, setCustomAmount] = useState<string>('')
         const [points, setPoints] = useState<number | null>(null)
+        const [tons, setTons] = useState<number | null>(null)
 
         const checkAndRegisterUser = async () => {
             if (!user) return
@@ -70,6 +76,15 @@
             }
         }
 
+        const updateTonPoints = async () => {
+            try {
+                const newTons = await fetchUserTonAmount(String(user.id));
+                setTons(newTons.ton_balance)
+            } catch (error) {
+                console.log('Error updating tons', error)
+            }
+        }
+
         const onReceiveTonButtonClick = () => {
             setCurrentPage('friends')
         }
@@ -78,26 +93,52 @@
             setCurrentPage('donation')
         };
 
+        const onHomeIconClick = () => {
+            console.log('home click')
+            setCurrentPage('main')
+        }
+
+        const onLeaderboardClick = () => {
+            return
+        }
+
         const resetCustomAmount = () => {
             setCustomAmount('')
         }
 
-        useEffect(() =>{
-            tg.ready()
-            expand()
-            checkAndRegisterUser().catch((error) => {
-                console.error("Error during registration:", error);
-            });
-        },[])
+        useEffect(() => {
+            const initializeApp = async () => {
+                tg.ready();
+                tg.disableVerticalSwipes()
+                expand();
+                try {
+                    await checkAndRegisterUser();
+                } catch (error) {
+                    console.error('Error during registration:', error);
+                }
+            };
 
+            const minLoadingTime = 2000; // Минимальное время загрузки
+            const startTime = Date.now();
+
+            initializeApp().finally(() => {
+                const elapsedTime = Date.now() - startTime;
+                const remainingTime = minLoadingTime - elapsedTime;
+                setTimeout(() => setIsLoading(false), Math.max(remainingTime, 0)); // Гарантируем 2 секунды
+            });
+        }, []);
 
 
         return (
           <TonConnectUIProvider manifestUrl={manifestUrl}>
-              <div className="app-container">
-                  <ConnectButton/>
+              {isLoading ? (
+                  <WelcomeScreen/>
+              ) : (
+              <div className={'app-container'}>
+              <div className="app-content-container">
                   {currentPage === 'main' && (
                       <>
+                          <ConnectButton/>
                           <img src={DonutLogo} alt="DonutLogo" />
                           <DonutCountSection points={points} updatePoints={updatePoints}/>
                           <GetDonutButton onGetDonutButtonClick={onGetDonutButtonClick} />
@@ -106,7 +147,8 @@
                   )}
                   {currentPage === 'donation' && (
                       <>
-                          <div>Make a donut to get $DONUT</div>
+                          <ConnectButton/>
+                          <div className={'donate-page-message'}>Make a donut to get $DONUT</div>
                           <div className={'ton_amount_container'}>
                               <ChooseTonAmount tonNumber={0.5} text={'TON 0.5'} selectedOption={selectedOption} setSelectedOption={(value) => {
                                   resetCustomAmount()
@@ -127,11 +169,14 @@
                   )}
                   {currentPage === 'friends' && (
                       <>
-                          <div>Invite friends and get 50% of their donat in $TON</div>
+                          <FriendsHeader tons={tons} updateTons={updateTonPoints}/>
                           <InviteFriendsButton/>
                       </>
                   )}
               </div>
+                  <NavigationButtons HomeHandleClick={onHomeIconClick} LeaderboardHandleClick={onLeaderboardClick}/>
+              </div>
+                  )}
           </TonConnectUIProvider>
 
         );

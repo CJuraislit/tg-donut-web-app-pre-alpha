@@ -1,0 +1,20 @@
+.friends-header-rules {
+    font-size: 25px;
+    font-weight: bold;
+    max-width: 320px;
+    text-align: center;
+}
+
+.friends-header-message {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #42413F;
+}
+
+.ton-amount {
+    font-size: 33px;
+    font-weight: bold;
+    text-align: center;
+    filter: drop-shadow(10px 5px 5px rgba(253, 82, 174, 0.9));
+}

@@ -39,3 +39,9 @@ export async function registerUserWithReferral(userId: string, username: string,
         referred_by: referredBy,
     });
 }
+
+export async function fetchUserTonAmount(userId: string): Promise<{ user_id: string; ton_balance: number }> {
+    const { data } = await apiClient.get(`/users/${userId}/ton_points`);
+
+    return data;
+}

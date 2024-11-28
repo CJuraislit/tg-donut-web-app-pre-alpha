@@ -1,0 +1,20 @@
+.navigation-container {
+    position: absolute;
+    bottom: 0;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    min-width: 360px;
+    height: 92px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 128px;
+}
+
+.navigation-button {
+    display: flex;
+    background-color: #090909;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
