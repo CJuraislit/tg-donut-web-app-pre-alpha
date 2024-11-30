@@ -16,3 +16,5 @@ apiClient.interceptors.response.use(
 );
 
 export default apiClient;
+
+//test-machine.gintonic.work/api/users/705283995/points
