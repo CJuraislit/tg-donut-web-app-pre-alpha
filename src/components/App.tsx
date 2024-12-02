@@ -131,9 +131,22 @@
 
         return (
           <TonConnectUIProvider manifestUrl={manifestUrl}>
-              {isLoading ? (
+          <div>
+              <CSSTransition
+                  in={isLoading}
+                  timeout={1000}
+                  classNames={"welcome"}
+                  unmountOnExit
+              >
                   <WelcomeScreen/>
-              ) : (
+              </CSSTransition>
+
+              <CSSTransition
+                  in={!isLoading}
+                  timeout={1000}
+                  classNames={"main"}
+                  unmountOnExit
+              >
               <div className={'app-container'}>
               <div className="app-content-container">
                   {currentPage === 'main' && (
@@ -172,11 +185,12 @@
                           <FriendsHeader tons={tons} updateTons={updateTonPoints}/>
                           <InviteFriendsButton/>
                       </>
-                  )}
+                      )}
               </div>
                   <NavigationButtons HomeHandleClick={onHomeIconClick} LeaderboardHandleClick={onLeaderboardClick}/>
               </div>
-                  )}
+              </CSSTransition>
+              </div>
           </TonConnectUIProvider>
 
         );

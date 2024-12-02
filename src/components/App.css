@@ -56,4 +56,56 @@ html, body {
     max-width: 320px;
 }
 
+/* Анимация плавного исчезновения
+.fade-exit {
+    opacity: 1;
+}
 
+.fade-exit-active {
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 1s ease, transform 1s ease;
+}
+*/
+/* Анимация плавного появления */
+/*.fade-enter {
+    opacity: 0;
+    transform: scale(0.98);
+    visibility: hidden;  Скрываем элемент до начала анимации
+}
+*/
+/*
+.fade-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+    transition: opacity 1s ease, transform 1s ease;
+}
+*/
+
+
+.welcome-enter {
+    opacity: 0;
+}
+.welcome-enter-active {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+.welcome-exit {
+    opacity: 1;
+}
+.welcome-exit-active {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.main-enter {
+    opacity: 0;
+}
+.main-enter-active {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+.main-enter-done {
+    opacity: 1;
+}
