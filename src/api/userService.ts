@@ -21,6 +21,23 @@ export async function sendTransaction(userId: string, amountTON: number, referre
     await apiClient.post(`/transactions`, payload);
 }
 
+export async function updateWalletAddress(userId: string, walletAddress: string): Promise<void> {
+    try {
+        const response = await apiClient.post(
+            `/users/${userId}/update_wallet`,
+            {
+                wallet_address: walletAddress,
+            },
+            {
+                headers: {'Content-Type': 'application/json'},
+            }
+            );
+        console.log('Wallet updated successfully', response.data);
+    } catch (error) {
+        console.log('Error updating wallet address:' ,error);
+    }
+}
+
 // История транзакций пользователя
 export async function fetchTransactionHistory(userId: string): Promise<any[]> {
     const { data } = await apiClient.get(`/transactions/${userId}/history`);

@@ -55,7 +55,7 @@ const DonateButton: FC<DonateButtonProps> = ({isDisabled, selectedAmount, onTran
             onClick={handleTransaction}
             disabled={isDisabled}
         >
-            Donat
+            Donate
         </button>
     );
 };

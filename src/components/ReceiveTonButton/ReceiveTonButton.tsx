@@ -12,7 +12,7 @@ const ReciveTonButton: FC<ReciveTonButtonProps> = ({onReceiveTonButtonClick}) =>
         className={'receive_ton_button'}
         onClick={onReceiveTonButtonClick}
     >
-        Recive $TON
+        Receive $TON
     </button>
   );
 };

@@ -1,6 +1,6 @@
 .navigation-container {
     margin: 0 auto;
-    /*padding-bottom: 40px;*/
+    padding-bottom: 40px;
     min-width: 360px;
     height: 52px;
     display: flex;
