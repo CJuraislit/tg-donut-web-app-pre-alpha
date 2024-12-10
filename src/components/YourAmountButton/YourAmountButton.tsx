@@ -73,9 +73,9 @@ const YourAmountButton: FC<YourAmountButtonProps> = ({ selectedOption, setSelect
 
             {/* Модальное окно для ввода суммы */}
             {isModalOpen && (
-                <div className={'modal'}>
-                    <div className={'modal-content'}>
-                        <div className={'modal_header'}>ENTER YOUR AMOUNT</div>
+                <div className={'modal-donation'}>
+                    <div className={'modal-donation-content'}>
+                        <div className={'modal-donation-header'}>ENTER YOUR AMOUNT</div>
 
                         {/* Инпут для ввода суммы */}
                         <input

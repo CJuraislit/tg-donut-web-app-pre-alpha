@@ -1,14 +1,22 @@
 .get-donut-button {
-    width: 360px;
-    height: 53px;
-    text-align: center;
+    margin-bottom: 15px;
+    width: 349px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 25px;
     font-weight: bold;
-    border-radius: 13px;
-    padding: 10px 5px;
+    border-radius: 10px;
     color: #000;
     border: none;
 }
+
+.donut-symbol {
+    margin-left: 13px;
+    margin-right: 4px;
+}
+
 
 .get-donut-button.active {
     background-color: #fff;

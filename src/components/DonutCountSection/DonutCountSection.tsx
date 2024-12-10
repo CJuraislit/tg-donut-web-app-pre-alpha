@@ -13,8 +13,8 @@ const DonutCountSection:FC<DonutCountSectionProps> = ({points, updatePoints}) =>
 
     return (
         <div className={'DonutCountSection_container'}>
-            <h2 className={'donut_count'}>{points !== null ? points : '0'}</h2>
-            <p>$DONUT</p>
+            <div className={'donut-count'}>{points !== null ? points : '0'}</div>
+            <p>DONUT</p>
         </div>
     );
 };

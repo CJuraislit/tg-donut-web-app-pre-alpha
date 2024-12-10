@@ -9,6 +9,7 @@ import DonationPage from "./DonationPage/DonationPage";
 import FriendsPage from "./FriendsPage/FriendsPage";
 import NavigationButtons from "./NavigationButtons/NavigationButtons";
 import WelcomeScreen from "./WelcomeScreen/WelcomeScreen";
+import ConnectButton from "./ConnectButton/ConnectButton";
 
 export const App = () => {
     const {tg, user, expand} = useTelegram()
@@ -109,7 +110,6 @@ export const App = () => {
                         <Route path={'/friends'} element={<FriendsPage/>}/>
                         <Route path={'/welcome'}/>
                     </Routes>
-                    <NavigationButtons/>
                 </div>
             </Router>
         </TonConnectUIProvider>

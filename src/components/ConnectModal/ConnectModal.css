@@ -1,0 +1,132 @@
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Полупрозрачное затемнение */
+    z-index: 999; /* Уровень поверх приложения, но ниже модального окна */
+    opacity: 0; /* Исходное состояние — прозрачность */
+    transition: opacity 0.3s ease; /* Анимация появления */
+}
+
+.modal-overlay.active {
+    opacity: 1; /* Полное затемнение */
+}
+
+.modal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 230px;
+    background: #121214;
+    border-radius: 16px 16px 0 0;
+    z-index: 1000;
+    animation: slideUp 0.3s ease forwards;
+}
+
+.modal.slide-out {
+    animation: slideDown 0.3s ease forwards;
+}
+
+.modal-header {
+    position: relative;
+    margin-bottom: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-header-wallet {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    margin: 0;
+}
+
+.modal-close {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background-color: #121214;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.modal-content {
+    margin-bottom: 33px;
+    height: 59px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3A3737;
+    border-radius: 10px;
+    outline: 3px solid #E42A93;
+    outline-offset: -3px;
+    padding: 0 9px 0 17px;
+}
+
+.modal-content-wallet {
+    font-size: 15px;
+    color: #fff;
+}
+
+.modal-content-status {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+}
+
+.active-status {
+    font-size: 10px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.modal-footer button {
+    background: #121214;
+    color: #C62225;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.modal button:hover {
+    cursor: pointer;
+}

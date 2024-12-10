@@ -25,10 +25,10 @@ const MainPage:FC<MainPageProps> = ({points, updatePoints}) => {
     }
 
   return (
-    <div className={'app-content-container'}>
-        <ConnectButton/>
-        <img src={DonutLogo} alt="DonutLogo"/>
+    <div className={'app-main-container'}>
+        <ConnectButton className={'connect-button-main'} authClassName={'connect-button-auth-main'}/>
         <DonutCountSection points={points} updatePoints={updatePoints}/>
+        <img className={'donut-logo'} src={DonutLogo} alt="DonutLogo"/>
         <GetDonutButton onGetDonutButtonClick={onGetDonutButtonClick}/>
         <ReceiveTonButton onReceiveTonButtonClick={onReceiveTonButtonClick} />
     </div>

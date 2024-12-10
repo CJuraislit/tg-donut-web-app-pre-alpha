@@ -2,18 +2,20 @@
     display: flex;
     flex-direction: column; /* Элементы располагаются в колонку */
     align-items: center;    /* Центрирование по горизонтали */
-    margin: 10px auto;         /* Центрирует контейнер по горизонтали */
+    margin: 0 auto 27px auto;         /* Центрирует контейнер по горизонтали */
     width: fit-content;
+    gap: 20px;
 }
 
-.donut_count {
-    color: #fff;
+.donut-count {
+    color: #8B8B8B;
     font-size: 60px;
+    line-height: 47px;
     font-weight: bold;
 }
 p {
-    color: #42413F;
+    color: #8B8B8B;
     font-size: 30px;
+    line-height: 22px;
     font-weight: bold;
-
 }

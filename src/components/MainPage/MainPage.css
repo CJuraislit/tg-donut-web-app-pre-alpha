@@ -1,15 +1,26 @@
-.app-content-container {
+.app-main-container {
     font-family: 'Inter', sans-serif;
     color: #fff;
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
     /*justify-content: center;*/
     min-height: calc(100% - 52px); /* Растягиваем на полную высоту родителя */
     width: 100%; /* Растягиваем на полную ширину */
     /* overflow: hidden;  Убираем прокрутку внутри контейнера */
     overflow-y: auto; /* Добавляем прокрутку, если контент выходит за пределы */
 
+}
+
+.connect-button-main {
+    margin-bottom: 51px;
+}
+
+.connect-button-auth-main {
+    margin-bottom: 51px;
+}
+
+.app-main-container .donut-logo {
+    margin-bottom: 102px;
 }

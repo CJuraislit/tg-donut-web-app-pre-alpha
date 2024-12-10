@@ -21,7 +21,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    padding-top: 20px;
+    padding: 38px 0 61px 0; /* Устанавливаем отступы сверху и снизу */
     opacity: 0; /* Начальное состояние, невидим */
     animation: fadeIn 1s ease-in-out forwards; /* Применяем анимацию */
 }

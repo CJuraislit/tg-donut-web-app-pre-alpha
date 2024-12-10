@@ -1,6 +1,9 @@
 import React, {FC, useEffect, useState} from 'react';
 import './GetDonutButton.css'
 import {useTonWallet} from "@tonconnect/ui-react";
+import activeDonutSymbol from '../../assets/images/ActiveDonutSymbol.svg'
+import inactiveDonutSymbol from '../../assets/images/InactiveDonutSymbol.svg'
+
 
 interface GetDonutButtonProps {
     onGetDonutButtonClick: () => void;
@@ -16,11 +19,13 @@ const GetDonutButton:FC<GetDonutButtonProps> = ({onGetDonutButtonClick}) => {
 
   return (
       <button
-          className={`get-donut-button ${isWalletConnected ? 'active' : 'inactive'}`}
-          // disabled={!isWalletConnected}
+          className={`get-donut-button ${isWalletConnected ? '' : 'inactive'}`}
+          disabled={!isWalletConnected}
           onClick={onGetDonutButtonClick}
       >
-          Get $DONUT
+          <span>Get</span>
+          <img className={'donut-symbol'} src={isWalletConnected ? activeDonutSymbol : inactiveDonutSymbol} alt={'Donut Symbol'}/>
+          <span>DONUT</span>
       </button>
   );
 };
