@@ -1,0 +1,18 @@
+.receive_ton_button {
+    width: clamp(220px, 29.083rem, 349px); /* Увеличиваем минимальную ширину */
+    height: clamp(44px, 4rem, 48px); /* Увеличиваем минимальную высоту */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(16px, 2.083rem, 25px);
+    font-weight: bold;
+    border: none;
+    border-radius: 0.83rem;
+    color: #000;
+    background-color: #fff;
+}
+
+.ton-symbol {
+    margin-left: 1rem;
+    margin-right: 0.125rem;
+}

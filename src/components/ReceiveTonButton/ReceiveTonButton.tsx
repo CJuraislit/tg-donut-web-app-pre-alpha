@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import './ReceiveTonButton.css'
+import './ReceiveTonButton1.css'
 import activeTonSymbol from '../../assets/images/ActiveTonSymbol.svg'
 import inactiveTonSymbol from '../../assets/images/InactiveDonutSymbol.svg'
 

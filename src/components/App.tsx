@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './App.css'
+import './App1.css'
 import {TonConnectUIProvider, useTonWallet,} from "@tonconnect/ui-react";
 import {useTelegram} from "../hooks/useTelegram";
 import {fetchUserPoints, fetchUserTonAmount, registerUser, registerUserWithReferral} from "../api/userService";
@@ -18,6 +18,7 @@ export const App = () => {
     const [points, setPoints] = useState<number | null>(null)
     const [fadeOut, setFadeOut] = useState<string>('')
 
+    console.log(tg.initData)
     const checkAndRegisterUser = async () => {
         if (!user) return
 

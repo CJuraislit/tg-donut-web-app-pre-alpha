@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import {TonConnectButton, TonConnectUI, useTonAddress, useTonConnectUI, useTonWallet,} from "@tonconnect/ui-react";
-import './ConnectButton.css'
+import './ConnectButton1.css'
 import ConnectModal from "../ConnectModal/ConnectModal";
 import CheckMark from '../../assets/images/CheckMarkConnectButton.svg'
 import TonSymbol from '../../assets/images/TonSymbolConnectButton.svg'

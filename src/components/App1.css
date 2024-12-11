@@ -1,0 +1,49 @@
+/* Сбрасываем стили для всех элементов */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none; /* Запрещаем выделение текста */
+    -webkit-user-select: none; /* Для браузеров на основе WebKit */
+    -ms-user-select: none; /* Для IE */
+}
+
+
+/* Устанавливаем базовые стили для body */
+body {
+    background: #090909;
+    height: 100%;
+    overflow: hidden; /* Убираем прокрутку */
+}
+
+html {
+    font-size: clamp(16px, calc(100vw / 430), 16px);
+
+    /* Для десктопов с низкой плотностью пикселей */
+    @media (max-resolution: 191dpi) {
+        font-size: 12px; /* Уменьшаем базовый размер для десктопов */
+        .app-main-container .donut-logo {
+            width: clamp(120px, 15rem, 255px); /* Уменьшаем пропорциональный размер */
+        }
+    }
+}
+
+/* Стили для корневого элемента React */
+#root {
+    height: 100%; /* Корневой элемент занимает весь экран */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Основной контейнер приложения */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto; /* Высота адаптируется */
+    max-height: 100vh; /* Ограничиваем максимальную высоту */
+    padding: clamp(20px, 3rem, 38px) 0
+    calc(clamp(20px, 1.6875rem, 27px) + env(safe-area-inset-bottom));
+    overflow-y: auto;
+}
+
