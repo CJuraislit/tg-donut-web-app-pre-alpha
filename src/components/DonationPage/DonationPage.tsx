@@ -13,11 +13,11 @@ interface DonationPageProps {
 
 const DonationPage:FC<DonationPageProps> = ({updatePoints}) => {
     const [selectedOption, setSelectedOption] = useState<number | null>(null)
-    const [customAmount, setCustomAmount] = useState<string>('')
+    // const [customAmount, setCustomAmount] = useState<string>('')
 
-    const resetCustomAmount = () => {
-        setCustomAmount('')
-    }
+    // const resetCustomAmount = () => {
+    //     setCustomAmount('')
+    // }
 
     return (
         <div className="app-content-container">
@@ -28,19 +28,19 @@ const DonationPage:FC<DonationPageProps> = ({updatePoints}) => {
             <div className={'donate-page-message'}>MAKE A DONUT TO GET <img src={DonutSymbolDonation} alt="donut"/> DONUT</div>
             <div className={'ton-amount-container'}>
                 <ChooseTonAmount tonNumber={0.5} textTon={'0,5'} textDonut={'500'} selectedOption={selectedOption} setSelectedOption={(value) => {
-                    resetCustomAmount()
+                    // resetCustomAmount()
                     setSelectedOption(value)
                 }}/>
                 <ChooseTonAmount tonNumber={2} textTon={'2'} textDonut={'4,000'} selectedOption={selectedOption} setSelectedOption={(value) => {
-                    resetCustomAmount()
+                    // resetCustomAmount()
                     setSelectedOption(value)
                 }}/>
                 <ChooseTonAmount tonNumber={10} textTon={'10'} textDonut={'50,000'} selectedOption={selectedOption} setSelectedOption={(value) => {
-                    resetCustomAmount()
+                    // resetCustomAmount()
                     setSelectedOption(value)
                 }}/>
             </div>
-            <YourAmountButton selectedOption={selectedOption} setSelectedOption={setSelectedOption} customAmount={customAmount} setCustomAmount={setCustomAmount}/>
+            <YourAmountButton selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
             <DonateButton isDisabled={selectedOption === null} selectedAmount={selectedOption} onTransactionComplete={updatePoints}/>
         </div>
     );

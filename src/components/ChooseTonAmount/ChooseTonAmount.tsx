@@ -8,7 +8,6 @@ interface ChooseTonAmountProps {
     textDonut: string,
     selectedOption: number | null,
     setSelectedOption: (value: number) => void,
-    // resetCustomAmount: () => void;
 }
 
 const ChooseTonAmount = ({tonNumber, textTon, textDonut ,selectedOption, setSelectedOption}: ChooseTonAmountProps) => {
