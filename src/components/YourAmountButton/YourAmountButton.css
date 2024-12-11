@@ -1,6 +1,6 @@
 .your-amount-button {
-    min-width: 360px;
-    height: 53px;
+    min-width: 375px;
+    height: 66px;
     text-align: center;
     background-color: #090909;
     color: #fff;
@@ -8,11 +8,12 @@
     font-weight: bold;
     border: 2px solid #282828;
     border-radius: 13px;
+    margin-bottom: 136px;
 }
 
 .your-amount-button.active {
-    box-shadow: 10px 5px 5px  rgba(253, 82, 174, 0.9);
-    border: 2px solid #ffffff;
+    border: 1px solid #E42A93;
+    color: #E42A93;
 }
 
 /*.your-amount-button:hover {*/

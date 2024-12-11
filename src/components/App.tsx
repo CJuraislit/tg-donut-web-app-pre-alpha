@@ -7,9 +7,8 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import MainPage from "./MainPage/MainPage";
 import DonationPage from "./DonationPage/DonationPage";
 import FriendsPage from "./FriendsPage/FriendsPage";
-import NavigationButtons from "./NavigationButtons/NavigationButtons";
 import WelcomeScreen from "./WelcomeScreen/WelcomeScreen";
-import ConnectButton from "./ConnectButton/ConnectButton";
+import BackgroundDots from "./BackgroundDots/BackgroundDots";
 
 export const App = () => {
     const {tg, user, expand} = useTelegram()
@@ -31,7 +30,6 @@ export const App = () => {
             await registerUserFlow()
         }
     }
-
 
     const registerUserFlow = async () => {
         if (!user) return
@@ -94,6 +92,7 @@ export const App = () => {
     if(isLoading) {
         return (
             <div className={`${fadeOut}`}>
+                <BackgroundDots/>
                 <WelcomeScreen/>
             </div>
         )
@@ -103,6 +102,7 @@ export const App = () => {
     return (
         <TonConnectUIProvider manifestUrl={manifestUrl}>
             <Router>
+                <BackgroundDots/>
                 <div className={'app-container fade-in'}>
                     <Routes>
                         <Route path={'/'} element={<MainPage points={points} updatePoints={updatePoints}/>}/>

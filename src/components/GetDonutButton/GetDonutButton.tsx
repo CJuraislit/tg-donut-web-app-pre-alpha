@@ -20,7 +20,7 @@ const GetDonutButton:FC<GetDonutButtonProps> = ({onGetDonutButtonClick}) => {
   return (
       <button
           className={`get-donut-button ${isWalletConnected ? '' : 'inactive'}`}
-          disabled={!isWalletConnected}
+          // disabled={!isWalletConnected}
           onClick={onGetDonutButtonClick}
       >
           <span>Get</span>

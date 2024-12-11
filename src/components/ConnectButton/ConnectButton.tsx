@@ -15,18 +15,6 @@ const ConnectButton:FC<ConnectButtonProps> = ({className, authClassName}) => {
     const walletAddress = useTonAddress();
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-
-    // const  handleDisconnect = async () => {
-    //     try {
-    //         // Ожидаем завершения отключения кошелька
-    //         await tonConnectUI.disconnect();
-    //         console.log("Wallet disconnected");
-    //         setIsModalOpen(false);
-    //     } catch (err) {
-    //         console.error('Failed to disconnect wallet:', err);
-    //     }
-    // }
-
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
     }

@@ -29,6 +29,9 @@
 }
 
 .modal-overlay.active {
+    user-select: none; /* Запрещаем выделение текста */
+    -webkit-user-select: none; /* Для браузеров на основе WebKit */
+    -ms-user-select: none; /* Для IE */
     opacity: 1; /* Полное затемнение */
 }
 

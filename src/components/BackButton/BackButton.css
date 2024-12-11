@@ -1,0 +1,10 @@
+.back-button {
+    position: absolute; /* Позиционируем относительно родителя */
+    left: 18px; /* Отступ от левого края окна */
+    background-color: #090909;
+    border: none;
+    cursor: pointer; /* Добавляем указатель на кнопке */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

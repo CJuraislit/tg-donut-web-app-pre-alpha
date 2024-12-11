@@ -2,6 +2,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none; /* Запрещаем выделение текста */
+    -webkit-user-select: none; /* Для браузеров на основе WebKit */
+    -ms-user-select: none; /* Для IE */
+
 }
 
 html, body {
@@ -22,6 +26,7 @@ html, body {
     align-items: center;
     height: 100vh;
     padding: 38px 0 61px 0; /* Устанавливаем отступы сверху и снизу */
+    z-index: 1;
     opacity: 0; /* Начальное состояние, невидим */
     animation: fadeIn 1s ease-in-out forwards; /* Применяем анимацию */
 }
