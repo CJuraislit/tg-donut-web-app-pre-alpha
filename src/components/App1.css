@@ -17,13 +17,24 @@ body {
 }
 
 html {
-    font-size: clamp(16px, calc(100vw / 430), 16px);
+    font-size: 16px;
 
+    @media (max-width: 402px) {
+        font-size: 16px;
+    }
     /* Для десктопов с низкой плотностью пикселей */
     @media (max-resolution: 191dpi) {
         font-size: 12px; /* Уменьшаем базовый размер для десктопов */
         .app-main-container .donut-logo {
             width: clamp(120px, 15rem, 255px); /* Уменьшаем пропорциональный размер */
+        }
+
+        /*.your-amount-button {*/
+        /*    margin-bottom: 5rem;*/
+        /*}*/
+
+        .donate-page-message {
+            max-width: 20rem;
         }
     }
 }

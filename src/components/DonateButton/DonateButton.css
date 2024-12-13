@@ -1,10 +1,10 @@
 .donate_button {
-    min-width: 349px;
-    height: 48px;
+    min-width: 21.8125rem;
+    height: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 1.5625rem;
     font-weight: bold;
     border: none;
     border-radius: 10px;

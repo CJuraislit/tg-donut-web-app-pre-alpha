@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import './GetDonutButton1.css'
+import './GetDonutButton.css'
 import {useTonWallet} from "@tonconnect/ui-react";
 import activeDonutSymbol from '../../assets/images/ActiveDonutSymbol.svg'
 import inactiveDonutSymbol from '../../assets/images/InactiveDonutSymbol.svg'

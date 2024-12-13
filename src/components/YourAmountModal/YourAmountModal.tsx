@@ -1,4 +1,5 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
+import './YourAmountModal.css'
 
 interface YourAmountModalProps {
     setIsModalOpen: (isOpen: boolean) => void;
@@ -41,6 +42,16 @@ const YourAmountModal:FC<YourAmountModalProps> = ({setIsModalOpen}) => {
     const isConfirmButtonActive = customAmount !== '' && /^[1-9]\d*(\.\d{0,2})?$/.test(customAmount);
 
 
+    //
+    const sliderValues = [0.1, 0.3, 5, 10, 20, 50]; // значения слайдера
+    const [inputValue, setInputValue] = useState<number>(0.1);
+    const [isSliderActive, setIsSliderActive] = useState<boolean>(true); // следит за активным источником изменений
+    const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const index = parseInt(e.target.value, 10);
+        setInputValue(sliderValues[index]); // Устанавливаем значение из массива
+        setIsSliderActive(true); // Слайдер становится активным источником
+    };
+
     return (
         <div className={'modal-donation'}>
             <div className={'modal-donation-content'}>
@@ -55,7 +66,27 @@ const YourAmountModal:FC<YourAmountModalProps> = ({setIsModalOpen}) => {
                     placeholder="0.01 - 100 TON" // Подсказка для пользователя
                     className={'custom-amount-input'}
                 />
-
+                <input
+                    type="range"
+                    min="0"
+                    max={sliderValues.length - 1} // Индексы массива
+                    step="1"
+                    value={isSliderActive ? sliderValues.indexOf(inputValue) : undefined} // Привязка к индексу массива
+                    onChange={handleSliderChange}
+                    className="slider"
+                />
+                <div className="slider-labels">
+                    {sliderValues.map((value, index) => (
+                        <div key={index} className="slider-label">
+                            <span>{`TON ${value}`}</span>
+                            <div
+                                className={`slider-point ${
+                                    value === inputValue ? "active" : ""
+                                }`}
+                            />
+                        </div>
+                    ))}
+                </div>
                 <div className={'modal-actions'}>
                     {/* Кнопка подтверждения */}
                     <button

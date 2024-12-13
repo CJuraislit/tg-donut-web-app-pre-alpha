@@ -1,14 +1,14 @@
 .your-amount-button {
-    min-width: 375px;
-    height: 66px;
+    min-width: 23.4375rem;
+    height: 4.125rem;
     text-align: center;
     background-color: #090909;
     color: #fff;
-    font-size: 25px;
+    font-size: 1.5625rem;
     font-weight: bold;
     border: 2px solid #282828;
     border-radius: 13px;
-    margin-bottom: 136px;
+    margin-bottom: clamp(60px, 8rem, 136px);
 }
 
 .your-amount-button.active {

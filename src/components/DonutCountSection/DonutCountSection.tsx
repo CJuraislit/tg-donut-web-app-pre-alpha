@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import './DonutCountSection1.css'
+import './DonutCountSection.css'
 
 type DonutCountSectionProps = {
     points: number | null;

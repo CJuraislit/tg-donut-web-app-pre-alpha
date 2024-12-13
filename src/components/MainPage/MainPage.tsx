@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import './MainPage1.css'
+import './MainPage.css'
 import DonutLogo from '../../assets/images/DonutLogo.svg'
 import ConnectButton from "../ConnectButton/ConnectButton";
 import DonutCountSection from "../DonutCountSection/DonutCountSection";

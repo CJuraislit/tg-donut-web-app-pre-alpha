@@ -1,0 +1,156 @@
+.amount-modal-overlay {
+    position: fixed; /* Окно должно быть зафиксировано относительно всего экрана */
+    top: 0;           /* Отступ от верхнего края */
+    left: 0;          /* Отступ от левого края */
+    width: 100vw;     /* Ширина фона — 100% от ширины экрана */
+    height: 100vh;    /* Высота фона — 100% от высоты экрана */
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+    display: flex;    /* Flexbox для центрирования модального окна */
+    align-items: center;  /* Центрирование по вертикали */
+    justify-content: center; /* Центрирование по горизонтали */
+    z-index: 1000;    /* Обеспечивает, что окно будет поверх остальных элементов */
+}
+
+.amount-modal-container {
+    width: 100%;
+    margin: 0 1.375rem 0 1.4375rem;
+    background-color: #100f0f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0.625rem;
+}
+
+.amount-modal-container .amount-modal-message {
+    font-size: 1.875rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 1.3125rem 0 1.3125rem 0;
+}
+
+.amount-input-container {
+    width: auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1.5625rem 0.5rem 1.5625rem;
+}
+
+.amount-input-symbol {
+    position: absolute;
+    left: 0.9375rem;
+}
+
+.amount-input-text {
+    position: absolute;
+    left: 2.5475rem;
+}
+
+.amount-input {
+    background: #3A3737;
+    width: 100%;
+    height: 3.25rem;
+    display: block;
+    border: 2px solid #8B8B8B;
+    padding-left: 5.5rem;
+    font-family: Inter, sans-serif;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #E42A93;
+    border-radius: 0.625rem;
+}
+
+.ton-info-container {
+    width: 100%;
+    margin: 0.0625rem 1.5625rem 1.875rem 1.5625rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.ton-info-balance {
+    display: flex;
+    align-items: center;
+    gap: 0.1875rem;
+}
+
+
+.ton-info-balance span{
+    color: #5E5E5E;
+    font-size: 0.5rem;
+    font-weight: bold;
+}
+
+.ton-info-warning {
+    display: flex;
+    align-items: center;
+    gap: 0.1875rem;
+}
+
+.ton-info-warning span {
+    color: #C62225;
+    font-size: 0.5rem;
+    font-weight: bold;
+}
+
+.slider-input-container {
+    width: 100%;
+    max-width: calc(100% - 3.0625rem);
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin:0 auto 1.9375rem auto;
+}
+
+input[type=range]{
+    -webkit-appearance: none;
+}
+
+.slider-input {
+    width: 100%;
+    height: 0.125rem;
+    background: #3A3737;
+    border: none;
+}
+
+.slider-input::-webkit-slider-runnable-track {
+    background: #3A3737; /* Цвет активной линии */
+    height: 0.125rem;
+}
+
+.slider-input::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Отключает стандартный стиль для ползунка в Safari */
+    appearance: none; /* Отключает стандартный стиль для ползунка */
+    width: 1.5rem; /* Ширина точки */
+    height: 1.5rem; /* Высота точки */
+    transform: scale(0.5);
+    border-radius: 50%; /* Округлая форма */
+    background: #E42A93; /* Цвет точки слайдера */
+    cursor: pointer; /* Курсор при наведении на точку */
+    margin-top: -0.3125rem;
+    /*transition: background-color 0.3s ease; !* Плавное изменение цвета *!*/
+}
+
+.dot-container {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.slider-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: #E42A93;
+}
+
+.amount-confirm-button {
+    width: 100%;
+    max-width: calc(100% - 8.75rem);
+    margin: 0 auto 2.25rem auto;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+}

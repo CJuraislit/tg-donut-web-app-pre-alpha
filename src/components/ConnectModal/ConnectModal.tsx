@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import './ConnectModal.css'
+import './ConnectModal1.css'
 import CloseModal from '../../assets/images/CloseModal.svg'
 import StatusIconModal from '../../assets/images/StatusIconModal.svg'
 import {useTonConnectUI} from "@tonconnect/ui-react";

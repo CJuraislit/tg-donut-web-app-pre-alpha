@@ -25,7 +25,8 @@ const DonationPage:FC<DonationPageProps> = ({updatePoints}) => {
                 <BackButton/>
                 <ConnectButton className={'connect-button-donation'} authClassName={'connect-button-auth-donation'}/>
             </div>
-            <div className={'donate-page-message'}>MAKE A DONUT TO GET <img src={DonutSymbolDonation} alt="donut"/> DONUT</div>
+            <div className={'donate-page-message'}>MAKE A DONUT TO GET <img src={DonutSymbolDonation} alt="donut"/> DONUT
+            </div>
             <div className={'ton-amount-container'}>
                 <ChooseTonAmount tonNumber={0.5} textTon={'0,5'} textDonut={'500'} selectedOption={selectedOption} setSelectedOption={(value) => {
                     // resetCustomAmount()

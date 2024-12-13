@@ -1,6 +1,7 @@
 import React, {FC, useState} from 'react';
 import './YourAmountButton.css'
 import YourAmountModal from "../YourAmountModal/YourAmountModal";
+import YourAmountModalTest from "../YourAmountModal/YourAmountModalTest";
 
 interface YourAmountButtonProps {
     selectedOption: number | null;
@@ -36,7 +37,8 @@ const YourAmountButton: FC<YourAmountButtonProps> = ({ selectedOption, setSelect
 
             {/* Модальное окно для ввода суммы */}
             {isModalOpen && (
-               <YourAmountModal setIsModalOpen={setIsModalOpen}/>
+               // <YourAmountModal setIsModalOpen={setIsModalOpen}/>
+               <YourAmountModalTest setIsModalOpen={setIsModalOpen}/>
             )}
         </>
     );

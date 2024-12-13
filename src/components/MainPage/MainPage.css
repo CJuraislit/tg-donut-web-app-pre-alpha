@@ -5,22 +5,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*justify-content: center;*/
-    min-height: calc(100% - 52px); /* Растягиваем на полную высоту родителя */
-    width: 100%; /* Растягиваем на полную ширину */
-    /* overflow: hidden;  Убираем прокрутку внутри контейнера */
-    overflow-y: auto; /* Добавляем прокрутку, если контент выходит за пределы */
+    min-height: 100%; /* Растягиваем на полную высоту родителя calc(100% - 52px) */
+    width: 100%;
+    overflow-y: auto; /* Прокрутка, если контент выходит за пределы */
+}
 
+/* Логотип пончика */
+.app-main-container .donut-logo {
+    width: clamp(120px, 15.9375rem, 255px);; /* Увеличиваем минимальный размер для мобильных */
+    height: auto;
+    margin-bottom: clamp(20px, 10rem, 102px); /* Адаптивный отступ */
 }
 
 .connect-button-main {
-    margin-bottom: 51px;
+    margin-bottom: 3.25rem;
 }
 
 .connect-button-auth-main {
-    margin-bottom: 51px;
-}
-
-.app-main-container .donut-logo {
-    margin-bottom: 102px;
+    margin-bottom: 3.25rem;
 }
