@@ -61,9 +61,14 @@
     border-radius: 0.625rem;
 }
 
+.amount-input:focus {
+    outline: none; /* Убираем стандартную обводку */
+    box-shadow: none; /* Убираем возможный тень, если она есть */
+}
+
 .ton-info-container {
     width: 100%;
-    margin: 0.0625rem 1.5625rem 1.875rem 1.5625rem;
+    margin: 0.0625rem 1.5625rem 1.25rem 1.5625rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -94,58 +99,6 @@
     font-weight: bold;
 }
 
-.slider-input-container {
-    width: 100%;
-    max-width: calc(100% - 3.0625rem);
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin:0 auto 1.9375rem auto;
-}
-
-input[type=range]{
-    -webkit-appearance: none;
-}
-
-.slider-input {
-    width: 100%;
-    height: 0.125rem;
-    background: #3A3737;
-    border: none;
-}
-
-.slider-input::-webkit-slider-runnable-track {
-    background: #3A3737; /* Цвет активной линии */
-    height: 0.125rem;
-}
-
-.slider-input::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Отключает стандартный стиль для ползунка в Safari */
-    appearance: none; /* Отключает стандартный стиль для ползунка */
-    width: 1.5rem; /* Ширина точки */
-    height: 1.5rem; /* Высота точки */
-    transform: scale(0.5);
-    border-radius: 50%; /* Округлая форма */
-    background: #E42A93; /* Цвет точки слайдера */
-    cursor: pointer; /* Курсор при наведении на точку */
-    margin-top: -0.3125rem;
-    /*transition: background-color 0.3s ease; !* Плавное изменение цвета *!*/
-}
-
-.dot-container {
-    position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.slider-dot {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    background: #E42A93;
-}
-
 .amount-confirm-button {
     width: 100%;
     max-width: calc(100% - 8.75rem);
@@ -153,4 +106,164 @@ input[type=range]{
     font-size: 1.25rem;
     font-weight: bold;
     text-align: center;
+}
+
+.helpers {
+    /*background-color: #2a2a2a;*/
+    height: 40px;
+    padding: 0 16px;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.range-slider {
+    display: block;
+    height: calc(100% - 6px);
+    position: relative
+}
+
+.range-slider input[type="range"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    border-radius: 16px;
+    cursor: pointer;
+    height: 32px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    outline: none;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+input[type="range"]:focus {
+    outline: none; /* Убираем обводку при фокусе */
+}
+
+.range-slider input[type="range"]::-webkit-slider-runnable-track {
+    background: transparent;
+    height: 0
+}
+
+.range-slider input[type="range"]::-moz-range-track {
+    background: transparent;
+    height: 0
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: radial-gradient(#E42A93,#E42A93 35%,transparent 0,transparent 100%);
+    border-radius: 50%;
+    height: 32px;
+    /*margin-left: calc(var(--result)*1px);*/
+    margin-top: -16px;
+    width: 32px
+}
+
+
+.range-slider input[type="range"]::-moz-range-thumb {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #E42A93;
+    border-radius: 50%;
+    height: 32px;
+    /*margin-left: calc(var(--result)*1px);*/
+    margin-top: -16px;
+    width: 32px
+}
+
+
+.marks {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0 16px;
+    position: absolute;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none
+}
+
+.line {
+    background-color: #5e5e5e;
+    height: 1px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    position: absolute
+}
+
+.filled {
+    background-color: #E42A93;
+    height: 1px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: var(--width)
+}
+
+.inner {
+    height: 100%;
+    position: relative
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute; /* Для позиционирования на линии */
+    left: var(--left, 0); /* Используем кастомное значение для позиции */
+    transform: translateX(-50%); /* Центруем по оси X */
+    height: 100%;
+}
+
+.point {
+    background-color: #5e5e5e;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.point.active {
+    background-color: #E42A93;
+}
+
+.label {
+    position: absolute;
+    bottom: -8px; /* Расстояние от точки до подписи */
+    color: #5e5e5e;
+    font-size: 10px;
+    font-variant-numeric: lining-nums tabular-nums slashed-zero;
+    font-weight: 500;
+    line-height: 12px;
+    white-space: nowrap;
+}
+
+.amount-confirm-button {
+    width: 100%;
+    height: 2.0625rem;
+    max-width: calc(100% - 8.75rem);
+    margin: 0 auto 2.25rem auto;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    background-color: #3A3737;
 }

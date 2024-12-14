@@ -7,6 +7,7 @@ import GetDonutButton from "../GetDonutButton/GetDonutButton";
 import ReceiveTonButton from "../ReceiveTonButton/ReceiveTonButton";
 import {useNavigate} from "react-router-dom";
 
+
 interface MainPageProps {
     points: number | null;
     updatePoints: () => void;

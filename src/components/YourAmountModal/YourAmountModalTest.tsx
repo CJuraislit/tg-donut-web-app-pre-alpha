@@ -9,38 +9,116 @@ interface YourAmountModalTestProps {
     setIsModalOpen: (isOpen: boolean) => void;
 }
 
+const marks: number[] = [0.1, 0.3, 5, 10, 20, 50]
+
+const getSegmentValue = (value:number, segments:number[]): number => {
+    for (let i = 0; i < segments.length; i++) {
+        if (value >= i * (100 / (segments.length - 1)) && value <= (i + 1) * (100 / (segments.length - 1))) {
+            const segmentStart = segments[i];
+            const segmentEnd = segments[i + 1];
+
+            const segmentPosition = (value - i * (100 / (segments.length - 1))) / (100 / (segments.length - 1));
+            return segmentStart + segmentPosition * (segmentEnd - segmentStart);
+        }
+    }
+    return segments[segments.length - 1];
+}
+
+const calculateSliderPosition = (value: number, segments: number[]): number => {
+    for (let i = 0; i < segments.length - 1; i++) {
+        if (value >= segments[i] && value <= segments[i + 1]) {
+            const segmentStart = segments[i];
+            const segmentEnd = segments[i + 1];
+            const segmentWidth = 100 / (segments.length - 1);
+
+            // Рассчитываем относительную позицию внутри сегмента
+            const positionInSegment = ((value - segmentStart) / (segmentEnd - segmentStart)) * segmentWidth;
+
+            // Позиция на слайдере = начало сегмента + относительная позиция
+            return i * segmentWidth + positionInSegment;
+        }
+    }
+    return 100; // Если значение больше последнего сегмента
+};
+
+
 const YourAmountModalTest:FC<YourAmountModalTestProps> = ({setIsModalOpen}) => {
-    const numDots = 6;
-    const sliderValues = [0.1, 0.3, 5, 10, 20, 50]
     const [customAmount, setCustomAmount] = useState<string>('');
-    const [selectedValue, setSelectedValue] = useState<number>(sliderValues[0]);
-    const [isEnough, setIsEnough] = React.useState<boolean>(true);
+    const [sliderValue, setSliderValue] = useState<number>(0);
+    const [calculatedValue, setCalculatedValue] = useState(0);    const [isEnough, setIsEnough] = React.useState<boolean>(true);
     const tonBalance = 0;
 
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value;
 
-        // Заменяем запятые на точки для унификации
-        value = value.replace(",", ".");
+        // Заменяем запятые на точки
+        value = value.replace(',', '.');
 
-        // Проверяем, что строка соответствует числовому формату с максимум 2 знаками после точки
-        // Пример: 10.99, 100, 0.99 — допустимо
-        if (/^\d*(\.\d{0,2})?$/.test(value)) {
-            const numericValue = parseFloat(value);
+        // Разрешаем временные состояния, включая "0.", "0.0", "0.00"
+        if (/^0$|^0\.$|^0\.\d{0,2}$|^\d*\.?\d{0,2}$/.test(value) || value === '') {
+            let numericValue = parseFloat(value);
 
-            // Ограничиваем максимальное значение до 100 TON
-            if (numericValue <= 100 || isNaN(numericValue)) {
-                setCustomAmount(value);
+            // Если значение начинается с ".", преобразуем в "0."
+            if (value.startsWith('.')) {
+                value = '0' + value;
+                numericValue = parseFloat(value);
+            }
+
+            // Обновляем текстовое поле
+            setCustomAmount(value);
+
+            // Если значение валидно, синхронизируем слайдер
+            if (!isNaN(numericValue)) {
+                const maxSegmentValue = marks[marks.length - 1];
+
+                if (numericValue === 0) {
+                    // Если значение равно 0, слайдер устанавливается на минимум
+                    setSliderValue(0);
+                    setCalculatedValue(0);
+                } else {
+                    // Ограничиваем значение до максимального сегмента
+                    numericValue = Math.min(numericValue, maxSegmentValue);
+
+                    // Рассчитываем позицию слайдера на основе введённого значения
+                    const sliderPosition = calculateSliderPosition(numericValue, marks);
+                    setSliderValue(sliderPosition);
+                    setCalculatedValue(numericValue);
+                }
+            } else {
+                // Если значение пустое, сбрасываем слайдер
+                setSliderValue(0);
+                setCalculatedValue(0);
             }
         }
     };
 
-    const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const index = parseInt(e.target.value, 10);
-        setSelectedValue(sliderValues[index]);
-    }
+    const handleSliderValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = parseFloat(e.target.value);
 
+        // Порог для магнитного эффекта
+        const threshold = 2; // (можно менять по необходимости, в процентах)
+
+        // Рассчитать ближайшую точку
+        const nearestMark = marks.find((_, index) => {
+            const markPosition = (index * 100) / (marks.length - 1);
+            return Math.abs(value - markPosition) <= threshold;
+        });
+
+        // Если ползунок рядом с точкой, "примагнитить"
+        const adjustedValue = nearestMark !== undefined
+            ? (marks.indexOf(nearestMark) * 100) / (marks.length - 1)
+            : value;
+
+        setSliderValue(adjustedValue);
+
+        // Рассчитать значение на основе сегментов
+        const calculatedValue = getSegmentValue(adjustedValue, marks);
+        setCalculatedValue(calculatedValue);
+
+        // Синхронизировать с текстовым полем
+        setCustomAmount(calculatedValue.toFixed(2));
+    }
 
     return (
         <div className={'amount-modal-overlay'}>
@@ -70,23 +148,49 @@ const YourAmountModalTest:FC<YourAmountModalTestProps> = ({setIsModalOpen}) => {
                         </div>
                     )}
                 </div>
-                <div className={'slider-input-container'}>
-                    <input
-                        type="range"
-                        min={'0'}
-                        max={sliderValues.length - 1}
-                        step={1}
-                        value={sliderValues.indexOf(selectedValue)}
-                        onChange={handleSliderChange}
-                        className={'slider-input'}
-                    />
-                    <div className={'dot-container'}>
-                        {Array.from({length: numDots}).map((_, index) => (
-                            <div key={index} className={'slider-dot'}></div>
-                        ))}
-                    </div>
+                <div className="helpers">
+                    <label className="range-slider">
+                        <input
+                            type="range"
+                            min="0"
+                            max="100"
+                            step="0.1"
+                            value={sliderValue}
+                            onChange={handleSliderValue}
+                            // style={{ opacity: 0, position: "absolute" }}
+                        />
+                        <div className="marks">
+                            <div className="line">
+                                <div className="filled"
+                                     style={{'--width': `${sliderValue}%`} as React.CSSProperties}></div>
+                            </div>
+                            <div className="inner">
+                                {marks.map((mark, index) => (
+                                    <div
+                                        key={index}
+                                        className={`item ${index === 0 ? 'is-first' : ''} ${
+                                            index === marks.length - 1 ? 'is-last' : ''
+                                        }`}
+                                        style={{
+                                            '--left': `${(index * 100) / (marks.length - 1)}%`,
+                                        } as React.CSSProperties}
+                                    >
+                                        <div className="content">
+                                            <div
+                                                className={`point ${
+                                                    sliderValue >= (index * 100) / (marks.length - 1)
+                                                        ? 'active'
+                                                        : ''
+                                                }`}
+                                            ></div>
+                                            <div className="label">TON {mark}</div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </label>
                 </div>
-
                 <button className={'amount-confirm-button'}>CONFIRM</button>
             </div>
         </div>

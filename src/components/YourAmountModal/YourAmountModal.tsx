@@ -1,5 +1,6 @@
 import React, {FC, useState} from 'react';
 import './YourAmountModal.css'
+import TestTestSlider from "../TestTestSlider/TestTestSlider";
 
 interface YourAmountModalProps {
     setIsModalOpen: (isOpen: boolean) => void;
@@ -66,41 +67,7 @@ const YourAmountModal:FC<YourAmountModalProps> = ({setIsModalOpen}) => {
                     placeholder="0.01 - 100 TON" // Подсказка для пользователя
                     className={'custom-amount-input'}
                 />
-                <input
-                    type="range"
-                    min="0"
-                    max={sliderValues.length - 1} // Индексы массива
-                    step="1"
-                    value={isSliderActive ? sliderValues.indexOf(inputValue) : undefined} // Привязка к индексу массива
-                    onChange={handleSliderChange}
-                    className="slider"
-                />
-                <div className="slider-labels">
-                    {sliderValues.map((value, index) => (
-                        <div key={index} className="slider-label">
-                            <span>{`TON ${value}`}</span>
-                            <div
-                                className={`slider-point ${
-                                    value === inputValue ? "active" : ""
-                                }`}
-                            />
-                        </div>
-                    ))}
-                </div>
-                <div className={'modal-actions'}>
-                    {/* Кнопка подтверждения */}
-                    <button
-                        onClick={confirmAmount}
-                        className={`confirm-button ${isConfirmButtonActive ? '' : 'disabled'}`}
-                        disabled={!isConfirmButtonActive}
-                    >
-                        Confirm
-                    </button>
-                    {/* Кнопка отмены */}
-                    <button onClick={() => setIsModalOpen(false)} className={'cancel-button'}>
-                        Cancel
-                    </button>
-                </div>
+                <TestTestSlider/>
             </div>
         </div>
     );
