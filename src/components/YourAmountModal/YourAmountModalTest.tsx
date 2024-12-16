@@ -1,12 +1,17 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import './YourAmountModal.css'
 import TonSymbol from '../../assets/images/TonSymbolAmountModal.svg'
 import TonText from '../../assets/images/TonTextAmpuntModal.svg'
 import WalletLogo from '../../assets/images/WalletLogoAmountModal.svg'
 import NotEnoughIcon from '../../assets/images/NotEnoughIconAmountModal.svg'
+import CloseButton from '../../assets/images/CloseAmountButton.svg'
+import createTransaction from "../../utils/tonTransaction";
+import {useTelegram} from "../../hooks/useTelegram";
+import {useTonConnectUI} from "@tonconnect/ui-react";
 
 interface YourAmountModalTestProps {
-    setIsModalOpen: (isOpen: boolean) => void;
+    closeModal: () => void;
+    onTransactionComplete: () => void;
 }
 
 const marks: number[] = [0.1, 0.3, 5, 10, 20, 50]
@@ -25,6 +30,10 @@ const getSegmentValue = (value:number, segments:number[]): number => {
 }
 
 const calculateSliderPosition = (value: number, segments: number[]): number => {
+    if (value < segments[0]) {
+        return 0; // Начальное положение слайдера
+    }
+
     for (let i = 0; i < segments.length - 1; i++) {
         if (value >= segments[i] && value <= segments[i + 1]) {
             const segmentStart = segments[i];
@@ -41,13 +50,20 @@ const calculateSliderPosition = (value: number, segments: number[]): number => {
     return 100; // Если значение больше последнего сегмента
 };
 
-
-const YourAmountModalTest:FC<YourAmountModalTestProps> = ({setIsModalOpen}) => {
-    const [customAmount, setCustomAmount] = useState<string>('');
+const YourAmountModalTest:FC<YourAmountModalTestProps> = ({closeModal, onTransactionComplete}) => {
+    const [customAmount, setCustomAmount] = useState<string>('0.1');
     const [sliderValue, setSliderValue] = useState<number>(0);
     const [calculatedValue, setCalculatedValue] = useState(0);    const [isEnough, setIsEnough] = React.useState<boolean>(true);
-    const tonBalance = 0;
+    const tonBalance = 40;
+    const inputRef = useRef<HTMLInputElement>(null)
+    const [tonConnectUI, setOptions] = useTonConnectUI()
+    const {user} = useTelegram()
 
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, []);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value;
@@ -59,11 +75,29 @@ const YourAmountModalTest:FC<YourAmountModalTestProps> = ({setIsModalOpen}) => {
         if (/^0$|^0\.$|^0\.\d{0,2}$|^\d*\.?\d{0,2}$/.test(value) || value === '') {
             let numericValue = parseFloat(value);
 
+            if (value === '0.00') {
+                value = '0.01'; // Преобразуем в минимально допустимое значение
+                numericValue = 0.01;
+            }
+
+            if (value === '0') {
+                setCustomAmount(value);
+                setSliderValue(0);
+                setCalculatedValue(0);
+                return;
+            }
+
+            if (value.startsWith('0') && !value.startsWith('0.')) {
+                value = value.replace(/^0+/, '');
+            }
+
             // Если значение начинается с ".", преобразуем в "0."
             if (value.startsWith('.')) {
                 value = '0' + value;
-                numericValue = parseFloat(value);
             }
+
+            numericValue = parseFloat(value);
+
 
             // Обновляем текстовое поле
             setCustomAmount(value);
@@ -72,7 +106,7 @@ const YourAmountModalTest:FC<YourAmountModalTestProps> = ({setIsModalOpen}) => {
             if (!isNaN(numericValue)) {
                 const maxSegmentValue = marks[marks.length - 1];
 
-                if (numericValue === 0) {
+                if (numericValue === 0 || numericValue < marks[0]) {
                     // Если значение равно 0, слайдер устанавливается на минимум
                     setSliderValue(0);
                     setCalculatedValue(0);
@@ -121,20 +155,24 @@ const YourAmountModalTest:FC<YourAmountModalTestProps> = ({setIsModalOpen}) => {
     }
 
     return (
-        <div className={'amount-modal-overlay'}>
-            <div className={'amount-modal-container'}>
+        <div className={'amount-modal-overlay'} onClick={closeModal}>
+            <div className={'amount-modal-container'} onClick={(e) => e.stopPropagation()}>
+                <button className={'amount-close-button'}>
+                    <img src={CloseButton} alt="close" onClick={closeModal}/>
+                </button>
                 <span className={'amount-modal-message'}>ENTER YOUR <br/> AMOUNT</span>
                 <div className="amount-input-container">
-                    <img src={TonSymbol} alt="TON" className={'amount-input-symbol'} />
-                    <img src={TonText} alt="" className={'amount-input-text'} />
-                        <input
-                            type="text"
-                            inputMode={'decimal'}
-                            value={customAmount}
-                            onChange={handleInputChange}
-                            placeholder=""
-                            className={'amount-input'}
-                        />
+                    <img src={TonSymbol} alt="TON" className={'amount-input-symbol'}/>
+                    <img src={TonText} alt="" className={'amount-input-text'}/>
+                    <input
+                        ref={inputRef}
+                        type="text"
+                        inputMode={'decimal'}
+                        value={customAmount}
+                        onChange={handleInputChange}
+                        placeholder=""
+                        className={`amount-input ${tonBalance >= parseFloat(customAmount) ? '' : 'with-error'}`}
+                    />
                 </div>
                 <div className={'ton-info-container'}>
                     <div className={'ton-info-balance'}>
@@ -143,8 +181,8 @@ const YourAmountModalTest:FC<YourAmountModalTestProps> = ({setIsModalOpen}) => {
                     </div>
                     {isEnough && (
                         <div className={'ton-info-warning'}>
-                            <img src={NotEnoughIcon} alt="!"/>
-                            <span>NOT ENOUGH TON</span>
+                            <img src={NotEnoughIcon} alt="!" className={`${parseFloat(customAmount) >= tonBalance ? 'show-error' : ''}`}/>
+                            <span className={`${parseFloat(customAmount) >= tonBalance ? 'show-error' : ''}`}>NOT ENOUGH TON </span>
                         </div>
                     )}
                 </div>
@@ -157,7 +195,6 @@ const YourAmountModalTest:FC<YourAmountModalTestProps> = ({setIsModalOpen}) => {
                             step="0.1"
                             value={sliderValue}
                             onChange={handleSliderValue}
-                            // style={{ opacity: 0, position: "absolute" }}
                         />
                         <div className="marks">
                             <div className="line">
@@ -191,10 +228,15 @@ const YourAmountModalTest:FC<YourAmountModalTestProps> = ({setIsModalOpen}) => {
                         </div>
                     </label>
                 </div>
-                <button className={'amount-confirm-button'}>CONFIRM</button>
+                <button
+                    className={`amount-confirm-button ${tonBalance >= parseFloat(customAmount) ? 'active' : ''}`}
+                    disabled={parseFloat(customAmount) > tonBalance }
+                    onClick={() => createTransaction(parseFloat(customAmount), onTransactionComplete, user.id, tonConnectUI)}
+                >
+                    CONFIRM</button>
             </div>
         </div>
-    );
+    )
 };
 
 export default YourAmountModalTest;

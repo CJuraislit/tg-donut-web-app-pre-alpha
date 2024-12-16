@@ -41,7 +41,7 @@ const DonationPage:FC<DonationPageProps> = ({updatePoints}) => {
                     setSelectedOption(value)
                 }}/>
             </div>
-            <YourAmountButton selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+            <YourAmountButton selectedOption={selectedOption} setSelectedOption={setSelectedOption} onTransactionComplete={updatePoints}/>
             <DonateButton isDisabled={selectedOption === null} selectedAmount={selectedOption} onTransactionComplete={updatePoints}/>
         </div>
     );

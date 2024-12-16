@@ -6,9 +6,11 @@ import YourAmountModalTest from "../YourAmountModal/YourAmountModalTest";
 interface YourAmountButtonProps {
     selectedOption: number | null;
     setSelectedOption: (amount: number) => void;
+    onTransactionComplete: () => void;
+
 }
 
-const YourAmountButton: FC<YourAmountButtonProps> = ({ selectedOption, setSelectedOption }) => {
+const YourAmountButton: FC<YourAmountButtonProps> = ({ selectedOption, setSelectedOption, onTransactionComplete }) => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     // Открытие модального окна
@@ -38,7 +40,7 @@ const YourAmountButton: FC<YourAmountButtonProps> = ({ selectedOption, setSelect
             {/* Модальное окно для ввода суммы */}
             {isModalOpen && (
                // <YourAmountModal setIsModalOpen={setIsModalOpen}/>
-               <YourAmountModalTest setIsModalOpen={setIsModalOpen}/>
+               <YourAmountModalTest closeModal={() => setIsModalOpen(false)} onTransactionComplete={onTransactionComplete} />
             )}
         </>
     );

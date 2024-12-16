@@ -1,6 +1,6 @@
 import React, {FC, useState} from 'react';
 import './DonateButton.css'
-import {SendTransactionRequest, TonConnectUI, useTonConnectUI, useTonWallet} from "@tonconnect/ui-react";
+import {SendTransactionRequest, useTonConnectUI} from "@tonconnect/ui-react";
 import {useTelegram} from "../../hooks/useTelegram";
 import {sendTransaction} from "../../api/userService";
 
@@ -46,7 +46,6 @@ const DonateButton: FC<DonateButtonProps> = ({isDisabled, selectedAmount, onTran
         }
 
     }
-
 
 
     return (
