@@ -1,0 +1,196 @@
+.welcome-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Скроем элементы, которые выходят за границы */
+    position: relative;
+}
+
+.welcome-content {
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    color: #fff;
+}
+
+.fade-text {
+    font-size: 2.0625rem;
+    color: #fff;
+    position: absolute; /* Все элементы будут располагаться относительно welcome-content */
+    width: 100%; /* Выравниваем текст по центру */
+    top: 17.9375rem; /* Задаём начальную позицию */
+    left: 0;
+    opacity: 0; /* Изначально скрыто */
+    animation: fadeInOut 1s ease-out forwards;
+    /*animation: fadeIn 0.5s ease-out forwards, fadeOut 0.5s ease-out forwards;*/
+}
+
+.fade-text span {
+    color: #E42A93;
+}
+
+/*.text-1 {*/
+/*    animation-delay: 0.5s, 1s;*/
+/*}*/
+
+/*.text-2 {*/
+/*    animation-delay: 1.5s, 2s;*/
+/*}*/
+.text-1 {
+    animation-delay: 0.5s;
+}
+
+.text-2 {
+    animation-delay: 1.5s;
+}
+
+/*.text-container-welcome  {*/
+/*    position: absolute; !* Все элементы будут располагаться относительно welcome-content *!*/
+/*    width: 100%; !* Выравниваем текст по центру *!*/
+/*    top: 20%; !* Задаём начальную позицию *!*/
+/*    left: 0;*/
+/*}*/
+
+
+.text-container-welcome {
+    position: absolute;
+    width: 100%;
+    top: 15.3125rem;
+    left: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Базовые стили для текста */
+.text {
+    opacity: 0; /* Изначально строки невидимы */
+    font-size: 2.0625rem;
+    color: #fff;
+    animation: fadeIn 0.5s ease-out forwards, fadeOut 1s ease-out 0.5s forwards; /* Анимация "появления" */
+    margin: 0.5rem 0; /* Расстояние между строками */
+}
+
+/* Задержки для каждой строки */
+.text-3 {
+    font-weight: bold;
+    color: #E42A93;
+    animation-delay: 2.5s, 4s;
+}
+
+.text-4 {
+    animation-delay: 3s, 4s;
+}
+
+.text-5 {
+    font-weight: bold;
+    color: #E42A93;
+    animation-delay: 3.5s, 4s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    10% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+    10%{
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Анимация для пончика */
+.donut-animation {
+    position: absolute;
+    left: -100%; /* Скрыто слева */
+    top: 17.9375rem;
+    transform: translateY(-50%);
+    animation: donutEnter 1s ease-in-out 4s forwards, donutExit 0.5s ease-in-out 5s forwards;
+}
+
+@keyframes donutEnter {
+    0% {
+        left: -100%;
+    }
+    32% {
+        left: 80%
+    }
+    48% {
+        left: 10%;
+    }
+    64% {
+        left: 30%;
+    }
+    80% {
+        left: 15%;
+    }
+    100% {
+        left: 20%;
+    }
+}
+
+@keyframes donutExit {
+    0% {
+        left: 20%;
+    }
+    50%{
+        left: 20%;
+    }
+    100% {
+        left: 200%;
+    }
+}
+
+/* Анимация для текста JUST DONUT */
+.just-donut-text {
+    width: 100%;
+    color: #ffffff;
+    font-size: 2.0625rem;
+    font-weight: bold;
+    opacity: 0;
+    position: absolute;
+    top: 17.9375rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: fadeIn 1s ease-out 5.5s forwards;
+}
+
+.just-donut-text span {
+    font-weight: bold;
+    color: #E42A93;
+}
+
+

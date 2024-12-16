@@ -6,9 +6,10 @@ import {fetchUserPoints, fetchUserTonAmount, registerUser, registerUserWithRefer
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import MainPage from "./MainPage/MainPage";
 import DonationPage from "./DonationPage/DonationPage";
-import FriendsPage from "./FriendsPage/FriendsPage";
+import FriendsPage from "../pages/FriendsPage/FriendsPage";
 import WelcomeScreen from "./WelcomeScreen/WelcomeScreen";
 import BackgroundDots from "./BackgroundDots/BackgroundDots";
+import WelcomeScreenTest from "./WelcomeScreenTest/WelcomeScreenTest";
 
 export const App = () => {
     const {tg, user, expand} = useTelegram()
@@ -76,7 +77,7 @@ export const App = () => {
             }
         };
 
-        const minLoadingTime = 6000; // Минимальное время загрузки
+        const minLoadingTime = 6500; // Минимальное время загрузки
         const startTime = Date.now();
 
         initializeApp().finally(() => {
@@ -90,23 +91,29 @@ export const App = () => {
     }, []);
 
 
-    if(isLoading) {
-        return (
-            <div className={`${fadeOut}`}>
-                <BackgroundDots/>
-                <WelcomeScreen/>
-            </div>
-        )
-    }
+    // if(isLoading) {
+    //     return (
+    //         <div className={`${fadeOut}`}>
+    //             <BackgroundDots/>
+    //             <WelcomeScreenTest/>
+    //         </div>
+    //     )
+    // }
 
 
     return (
         <TonConnectUIProvider manifestUrl={manifestUrl}>
             <Router>
+                {isLoading && (
+                    <div className={`${fadeOut}`}>
+                        <BackgroundDots/>
+                        <WelcomeScreenTest/>
+                    </div>
+                )}
                 <BackgroundDots/>
-                <div className={'app-container fade-in'}>
+                <div className={`app-container ${isLoading ? '' : 'fade-in'}`}>
                     <Routes>
-                        <Route path={'/'} element={<MainPage points={points} updatePoints={updatePoints}/>}/>
+                    <Route path={'/'} element={<MainPage points={points} updatePoints={updatePoints}/>}/>
                         <Route path={'/donation'} element={<DonationPage updatePoints={updatePoints}/>}/>
                         <Route path={'/friends'} element={<FriendsPage/>}/>
                         <Route path={'/welcome'}/>

@@ -12,6 +12,7 @@ html, body {
     background: #090909;
     height: 100%;
     overflow: hidden;
+    /*touch-action: none; !* Блокирует нежелательные свайпы *!*/
 }
 
 #root {

@@ -1,13 +1,17 @@
 .invite_friends_button {
-    width: 360px;
-    height: 53px;
+    font-family: Inter, sans-serif;
+    /*align-self: flex-end;*/
+    width: 100%;
+    max-width: 21.8125rem;
     text-align: center;
-    font-size: 25px;
+    font-size: 1.5625rem;
+    line-height: 22px;
     font-weight: bold;
     border: none;
     border-radius: 13px;
-    padding: 10px 5px;
+    padding: 0.8125rem 0;
     color: #000;
     background-color: #fff;
-    box-shadow: 10px 5px 5px  rgba(253, 82, 174, 0.9);
+    margin: 0 calc(1.65625rem - 1.40625rem);
+    /*margin: auto calc(1.65625rem - 1.40625rem) 0 calc(1.65625rem - 1.40625rem);*/
 }

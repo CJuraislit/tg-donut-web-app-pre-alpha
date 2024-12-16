@@ -57,9 +57,10 @@ const YourAmountModalTest:FC<YourAmountModalTestProps> = ({closeModal, onTransac
     const tonBalance = 40;
     const inputRef = useRef<HTMLInputElement>(null)
     const [tonConnectUI, setOptions] = useTonConnectUI()
-    const {user} = useTelegram()
+    const {tg, user} = useTelegram()
 
     useEffect(() => {
+        tg.disableVerticalSwipes()
         if (inputRef.current) {
             inputRef.current.focus();
         }

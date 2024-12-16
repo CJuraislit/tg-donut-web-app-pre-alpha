@@ -11,6 +11,8 @@
     z-index: 1000;    /* Обеспечивает, что окно будет поверх остальных элементов */
     backdrop-filter: blur(5px); /* Добавляем эффект размытия */
     -webkit-backdrop-filter: blur(5px); /* Для поддержки в WebKit-браузерах */
+    /*overflow: hidden;*/
+    /*touch-action: none;*/
 }
 
 .amount-modal-container {

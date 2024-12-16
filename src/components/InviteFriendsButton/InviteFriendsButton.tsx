@@ -23,7 +23,7 @@ const InviteFriendsButton = () => {
       className={'invite_friends_button'}
       onClick={handleInvite}
       >
-        Invite Friends
+        INVITE FRIENDS
       </button>
   );
 };

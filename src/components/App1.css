@@ -11,7 +11,7 @@
 
 /* Устанавливаем базовые стили для body */
 body {
-    background: #090909;
+    background: #000000;
     height: 100%;
     overflow: hidden; /* Убираем прокрутку */
 }
@@ -51,10 +51,42 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: auto; /* Высота адаптируется */
+    /*height: auto;*/
     max-height: 100vh; /* Ограничиваем максимальную высоту */
+    min-height: 100vh; /* Ограничиваем максимальную высоту */
     padding: clamp(20px, 3rem, 38px) 0
     calc(clamp(20px, 1.6875rem, 27px) + env(safe-area-inset-bottom));
     overflow-y: auto;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    /*animation: fadeIn 2s ease-in forwards ; !* Применяем анимацию *!*/
+}
+
+.app-container.fade-in {
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0; /* Начальное состояние: невидимый */
+    }
+    100% {
+        opacity: 1; /* Конечное состояние: полностью видимый */
+    }
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+    /*animation: fadeOut 1s ease-in-out none;*/
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 

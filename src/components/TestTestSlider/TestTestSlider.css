@@ -1,0 +1,140 @@
+.helpers {
+    /*background-color: #2a2a2a;*/
+    height: 40px;
+    padding: 0 16px;
+    width: 100%;
+}
+
+.range-slider {
+    display: block;
+    height: calc(100% - 6px);
+    position: relative
+}
+
+.range-slider input[type="range"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    border-radius: 16px;
+    cursor: pointer;
+    height: 32px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    outline: none;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+
+}
+
+.range-slider input[type="range"]::-webkit-slider-runnable-track {
+    background: transparent;
+    height: 0
+}
+
+.range-slider input[type="range"]::-moz-range-track {
+    background: transparent;
+    height: 0
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: radial-gradient(#E42A93,#E42A93 35%,transparent 0,transparent 100%);
+    border-radius: 50%;
+    height: 32px;
+    /*margin-left: calc(var(--result)*1px);*/
+    margin-top: -16px;
+    width: 32px
+}
+
+
+.range-slider input[type="range"]::-moz-range-thumb {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #E42A93;
+    border-radius: 50%;
+    height: 32px;
+    /*margin-left: calc(var(--result)*1px);*/
+    margin-top: -16px;
+    width: 32px
+}
+
+
+.marks {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0 16px;
+    position: absolute;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none
+}
+
+.line {
+    background-color: #5e5e5e;
+    height: 1px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    position: absolute
+}
+
+.filled {
+    background-color: #E42A93;
+    height: 1px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: var(--width)
+}
+
+.inner {
+    height: 100%;
+    position: relative
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute; /* Для позиционирования на линии */
+    left: var(--left, 0); /* Используем кастомное значение для позиции */
+    transform: translateX(-50%); /* Центруем по оси X */
+    height: 100%;
+}
+
+.point {
+    background-color: #5e5e5e;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.point.active {
+    background-color: #E42A93;
+}
+
+.label {
+    position: absolute;
+    bottom: -8px; /* Расстояние от точки до подписи */
+    color: #5e5e5e;
+    font-size: 10px;
+    font-variant-numeric: lining-nums tabular-nums slashed-zero;
+    font-weight: 500;
+    line-height: 12px;
+    white-space: nowrap;
+}
