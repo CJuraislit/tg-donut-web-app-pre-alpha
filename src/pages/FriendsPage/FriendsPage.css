@@ -1,0 +1,7 @@
+.app-friends-container {
+    width: 100%;
+    padding: 0 1.40625rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
