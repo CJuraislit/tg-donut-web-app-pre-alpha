@@ -1,5 +1,33 @@
 import apiClient from './apiClient';
 
+interface UserInitResponse {
+    message: string;
+    token: string;
+}
+
+export default async function getTokenFromInitData(initData: string, refId?:number): Promise<string> {
+    try {
+        const response = await apiClient.post<UserInitResponse>('/users/user_init', {
+            init_data: initData,
+            ref_id: refId || null,
+        });
+        return response.data.token;
+    } catch (error) {
+        console.error('Token error' ,error);
+        throw error;
+    }
+};
+
+export async function getMainUserInfo(token: string) {
+    const {data} = await apiClient.get('/users/me', {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        }
+    });
+
+    return data
+}
+
 // Получение баланса пользователя
 export async function fetchUserPoints(userId: string): Promise<{points_balance: number; ton_balance: number }> {
     const { data } = await apiClient.get(`/users/${userId}/points`);

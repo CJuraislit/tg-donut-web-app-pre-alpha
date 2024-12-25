@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-    baseURL: 'https://test-machine.gintonic.work/api',
+    baseURL: 'https://test-machine.gintonic.work/api/api',
     headers: {
         'Content-type': 'application/json',
     },

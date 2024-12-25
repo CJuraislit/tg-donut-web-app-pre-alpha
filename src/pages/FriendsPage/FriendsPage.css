@@ -58,6 +58,10 @@
     align-items: center;
 }
 
+.ton-symbol {
+    margin-right: 0.3125rem;
+}
+
 .referral-ton-to-claim {
     width: 100%;
     /*max-width: 22.3125rem;*/
@@ -71,7 +75,7 @@
     margin-bottom: 1.8125rem;
 }
 
-.referral-ton-to-claim div{
+.referral-ton-to-claim-header{
     display: flex;
     align-items: center;
 }
@@ -80,6 +84,37 @@
     font-size: 1.5625rem;
     font-weight: bold;
     color: #fff;
+}
+
+.claim-button-container {
+    padding: 0 0.75rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.claim-ton-button {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #000000;
+    background-color: #E42A93;
+    border: none;
+    border-radius: 5px;
+    padding: 0.34375rem 1.5rem;
+}
+
+.claim-donut-button {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #E42A93;
+    background-color: #1B1A1A;
+    border: 1px solid #E42A93;
+    /*outline-offset: 1px;*/
+    border-radius: 5px;
+    padding: 0.34375rem 2.78125rem;
 }
 
 .text-container-friends {

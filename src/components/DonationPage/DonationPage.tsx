@@ -13,14 +13,10 @@ interface DonationPageProps {
 
 const DonationPage:FC<DonationPageProps> = ({updatePoints}) => {
     const [selectedOption, setSelectedOption] = useState<number | null>(null)
-    // const [customAmount, setCustomAmount] = useState<string>('')
-
-    // const resetCustomAmount = () => {
-    //     setCustomAmount('')
-    // }
 
     return (
-        <div className="app-content-container">
+        <div className="app-donation-container">
+            <div className={'app-donation-wrapper'}>
             <div className={'donate-page-header'}>
                 <BackButton/>
                 <ConnectButton className={'connect-button-donation'} authClassName={'connect-button-auth-donation'}/>
@@ -42,6 +38,7 @@ const DonationPage:FC<DonationPageProps> = ({updatePoints}) => {
                 }}/>
             </div>
             <YourAmountButton selectedOption={selectedOption} setSelectedOption={setSelectedOption} onTransactionComplete={updatePoints}/>
+            </div>
             <DonateButton isDisabled={selectedOption === null} selectedAmount={selectedOption} onTransactionComplete={updatePoints}/>
         </div>
     );

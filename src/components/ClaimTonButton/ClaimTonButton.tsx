@@ -2,9 +2,9 @@ import React from 'react';
 
 const ClaimTonButton = () => {
     return (
-        <div>
-      
-        </div>
+        <button className="claim-ton-button">
+            CLAIM TON
+        </button>
     );
 };
 

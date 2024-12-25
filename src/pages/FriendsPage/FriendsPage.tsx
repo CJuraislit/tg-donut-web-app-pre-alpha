@@ -5,6 +5,8 @@ import ConnectButton from "../../components/ConnectButton/ConnectButton";
 import TonSymbol from '../../assets/images/ChooseTonAmountSymbol.svg'
 import TonSymbol13 from '../../assets/images/TonSymbol13.svg'
 import InviteFriendsButton from "../../components/InviteFriendsButton/InviteFriendsButton";
+import ClaimTonButton from "../../components/ClaimTonButton/ClaimTonButton";
+import ClaimDonutButton from "../../components/ClaimDonutButton/ClaimDonutButton";
 
 const FriendsPage = () => {
     return (
@@ -20,18 +22,19 @@ const FriendsPage = () => {
             <div className={'referral-ton-claimed'}>
                 <span>YOU'VE ALREADY RECEIVED</span>
                 <div>
-                    <img src={TonSymbol} alt=""/>
-                    <span>TON 30</span>
+                    <img src={TonSymbol} alt="" className={'ton-symbol'}/>
+                    <span>TON X</span>
                 </div>
             </div>
 
             <div className={'referral-ton-to-claim'}>
-                <div>
-                    <img src={TonSymbol} alt=""/>
-                    <span>TON 30</span>
+                <div className={'referral-ton-to-claim-header'}>
+                    <img src={TonSymbol} alt="" className={'ton-symbol'}/>
+                    <span>TON X</span>
                 </div>
-                <div>
-
+                <div className={'claim-button-container'}>
+                    <ClaimTonButton/>
+                    <ClaimDonutButton/>
                 </div>
             </div>
 
@@ -50,7 +53,6 @@ const FriendsPage = () => {
             </div>
 
             </div>
-
             <InviteFriendsButton/>
         </div>
     );

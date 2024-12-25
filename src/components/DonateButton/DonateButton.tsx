@@ -3,6 +3,8 @@ import './DonateButton.css'
 import {SendTransactionRequest, useTonConnectUI} from "@tonconnect/ui-react";
 import {useTelegram} from "../../hooks/useTelegram";
 import {sendTransaction} from "../../api/userService";
+import {Cell} from "@ton/core";
+import {beginCell} from "@ton/ton";
 
 
 interface DonateButtonProps {
@@ -21,6 +23,11 @@ const DonateButton: FC<DonateButtonProps> = ({isDisabled, selectedAmount, onTran
 
     const handleTransaction = async () => {
         if(!selectedAmount) return
+        const body = beginCell()
+            .storeUint(0, 32)
+            .storeStringRefTail(String(user.id))
+            .endCell()
+
 
         try {
             const transaction: SendTransactionRequest = {
@@ -30,13 +37,14 @@ const DonateButton: FC<DonateButtonProps> = ({isDisabled, selectedAmount, onTran
                         address:
                             "UQDTqiePOYQpPh-5hazEfo0wmkCtdIceVcMHB5b-cv3_ivTO", // message destination in user-friendly format
                         amount: (selectedAmount * 1000000000).toString(), // Toncoin in nanotons
+                        payload: body.toBoc().toString('base64')
                     },
                 ],
             };
 
-            await tonConnectUI.sendTransaction(transaction)
+            const result = await tonConnectUI.sendTransaction(transaction)
 
-            await sendTransaction(String(user?.id), selectedAmount)
+            // await sendTransaction(String(user?.id), selectedAmount)
 
             onTransactionComplete()
             alert('Transaction successfull')

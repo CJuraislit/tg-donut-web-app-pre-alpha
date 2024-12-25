@@ -1,7 +1,7 @@
 .back-button {
     position: absolute; /* Позиционируем относительно родителя */
     left: 1.125rem; /* Отступ от левого края окна */
-    background-color: #090909;
+    background-color: #000000;
     border: none;
     cursor: pointer; /* Добавляем указатель на кнопке */
     display: flex;

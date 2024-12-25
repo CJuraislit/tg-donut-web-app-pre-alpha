@@ -1,5 +1,5 @@
 .get-donut-button {
-    margin-bottom: clamp(10px, 1.25rem, 15px); /* Адаптивный отступ */
+    /*margin-bottom: clamp(10px, 1.25rem, 15px); !* Адаптивный отступ *!*/
     width: clamp(220px, 29.083rem, 349px); /* Увеличиваем минимальную ширину */
     height: clamp(44px, 4rem, 48px); /* Увеличиваем минимальную высоту */
     display: flex;

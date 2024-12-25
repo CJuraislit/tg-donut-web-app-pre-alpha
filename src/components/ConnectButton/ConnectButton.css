@@ -1,12 +1,17 @@
 .connect-button {
-    width: 13.5625rem;
-    height: 2.0625rem;
+    /*width: 13.5625rem;*/
+    /*height: 2.0625rem;*/
+    padding: 0.34375rem 0.90625rem;
+    /*width: 100%;*/
+    font-family: 'Inter', sans-serif; ;
+    /*max-width: 13.8125rem;*/
     background-color: #E42A93;
     color: #fff;
     border: 2px solid #fff;
     border-radius: 5px;
     font-size: 1.25rem;
     font-weight: bold;
+    line-height: 1.375rem;
     text-align: center;
 }
 

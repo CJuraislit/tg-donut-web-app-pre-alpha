@@ -34,6 +34,9 @@ export default (env: EnvVariables) => {
                     { from: path.resolve(__dirname, 'tonconnect-manifest.json'), to: path.resolve(__dirname, 'build/tonconnect-manifest.json') }
                 ]
             }),
+            new webpack.ProvidePlugin({ // !!!
+                Buffer: ['buffer', 'Buffer'],
+            }),
             isDev && new webpack.ProgressPlugin(),
             !isDev && new MiniCssExtractPlugin({
                 filename: 'css/[name].[contenthash:8].css',
@@ -61,10 +64,21 @@ export default (env: EnvVariables) => {
                     use: 'ts-loader',
                     exclude: /node_modules/,
                 },
+                {
+                    test: /\.(woff|woff2|eot|ttf|otf)$/,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'assets/fonts/[name][ext]'
+                    }
+                },
             ],
         },
         resolve: {
             extensions: ['.tsx', '.ts', '.js'],
+            fallback: { // !!!!
+                buffer: require.resolve("buffer"),
+                // stream: require.resolve("stream-browserify"),
+            },
         },
         devtool: isDev && "inline-source-map",
         devServer: isDev ? {

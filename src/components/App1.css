@@ -1,4 +1,29 @@
-/* Сбрасываем стили для всех элементов */
+@font-face {
+    font-family: 'Inter';
+    src: url('../assets/fonts/Inter-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Подключение начертания Semi-Bold */
+@font-face {
+    font-family: 'Inter';
+    src: url('../assets/fonts/InterDisplay-SemiBold.woff2') format('woff2');
+    font-weight: 600; /* Semi-Bold обычно имеет вес 600 */
+    font-style: normal;
+}
+
+/* Подключение начертания Medium */
+@font-face {
+    font-family: 'Inter';
+    src: url('../assets/fonts/InterDisplay-Medium.woff2') format('woff2');
+    font-weight: 500; /* Medium обычно имеет вес 500 */
+    font-style: normal;
+}
+
+
+
+
 * {
     margin: 0;
     padding: 0;
@@ -11,6 +36,7 @@
 
 /* Устанавливаем базовые стили для body */
 body {
+    font-family: 'Inter', sans-serif;
     background: #000000;
     height: 100%;
     overflow: hidden; /* Убираем прокрутку */
@@ -19,12 +45,42 @@ body {
 html {
     font-size: 16px;
 
-    @media (max-width: 402px) {
-        font-size: 16px;
-    }
+    /*@media (max-width: 402px) {*/
+    /*    font-size: 16px;*/
+    /*}*/
     /* Для десктопов с низкой плотностью пикселей */
-    @media (max-resolution: 191dpi) {
-        font-size: 12px; /* Уменьшаем базовый размер для десктопов */
+    /*@media (max-resolution: 191dpi) {*/
+    /*    font-size: 14px; !* Уменьшаем базовый размер для десктопов *!*/
+    /*    .app-main-container .donut-logo {*/
+    /*        width: clamp(120px, 15rem, 255px); !* Уменьшаем пропорциональный размер *!*/
+    /*    }*/
+
+    /*    !*.your-amount-button {*!*/
+    /*    !*    margin-bottom: 5rem;*!*/
+    /*    !*}*!*/
+
+    /*    .donate-page-message {*/
+    /*        max-width: 20rem;*/
+    /*    }*/
+    /*}*/
+
+    @media (max-width: 384px) {
+        font-size: 14px; /* Уменьшаем базовый размер для десктопов */
+        .app-main-container .donut-logo {
+            width: clamp(120px, 15rem, 255px); /* Уменьшаем пропорциональный размер */
+        }
+
+        /*.your-amount-button {*/
+        /*    margin-bottom: 5rem;*/
+        /*}*/
+
+        .donate-page-message {
+            max-width: 20rem;
+        }
+    }
+
+    @media (max-height: 590px) {
+        font-size: 14px; /* Уменьшаем базовый размер для десктопов */
         .app-main-container .donut-logo {
             width: clamp(120px, 15rem, 255px); /* Уменьшаем пропорциональный размер */
         }
@@ -54,9 +110,9 @@ html {
     /*height: auto;*/
     max-height: 100vh; /* Ограничиваем максимальную высоту */
     min-height: 100vh; /* Ограничиваем максимальную высоту */
-    padding: clamp(20px, 3rem, 38px) 0
-    calc(clamp(20px, 1.6875rem, 27px) + env(safe-area-inset-bottom));
+    padding: clamp(20px, 3rem, 38px) 0 clamp(25px, 3.8125rem, 61px);
     overflow-y: auto;
+    z-index: 1;
     opacity: 0;
     transition: opacity 2s ease-in-out;
     /*animation: fadeIn 2s ease-in forwards ; !* Применяем анимацию *!*/
