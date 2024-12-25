@@ -1,15 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import './App1.css'
-import {TonConnectUIProvider, useTonWallet,} from "@tonconnect/ui-react";
+import {TonConnectUIProvider} from "@tonconnect/ui-react";
 import {useTelegram} from "../hooks/useTelegram";
-import {fetchUserPoints, fetchUserTonAmount, registerUser, registerUserWithReferral} from "../api/userService";
+import {
+    fetchUserPoints,
+    fetchUserTonAmount,
+    getMainUserInfo,
+    registerUser,
+    registerUserWithReferral
+} from "../api/userService";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import MainPage from "./MainPage/MainPage";
 import DonationPage from "./DonationPage/DonationPage";
 import FriendsPage from "../pages/FriendsPage/FriendsPage";
-import WelcomeScreen from "./WelcomeScreen/WelcomeScreen";
 import BackgroundDots from "./BackgroundDots/BackgroundDots";
 import WelcomeScreenTest from "./WelcomeScreenTest/WelcomeScreenTest";
+import {AuthContextProvider, useAuthContext} from "../contexts/AuthContext";
+import {configParseMsgPrices} from "@ton/ton";
 
 export const App = () => {
     const {tg, user, expand} = useTelegram()
@@ -19,42 +26,41 @@ export const App = () => {
     const [points, setPoints] = useState<number | null>(null)
     const [fadeOut, setFadeOut] = useState<string>('')
 
-    console.log(tg.initData)
-    const checkAndRegisterUser = async () => {
-        if (!user) return
-
-        try {
-            const pointsData = await fetchUserPoints(String(user.id))
-            setPoints(pointsData.points_balance)
-            console.log('User found, points loaded')
-        } catch (error) {
-            console.log('User not found, starting registration')
-            await registerUserFlow()
-        }
-    }
-
-    const registerUserFlow = async () => {
-        if (!user) return
-
-        try {
-            const referralIdRaw = tg.initDataUnsafe?.start_param
-            const referralId = referralIdRaw?.replace(/\D/g, '')
-
-            if(referralId) {
-                await registerUserWithReferral(String(user.id), user.username || 'Unknown', referralId)
-                console.log('User registered with referralId: ', referralId)
-            } else {
-                await registerUser(String(user.id), user.username)
-                console.log('User registered without referral')
-            }
-
-            const pointsData = await fetchUserPoints(String(user.id))
-            setPoints(pointsData.points_balance);
-        } catch (error) {
-            console.log('Error during registration', error);
-        }
-
-    }
+    // const checkAndRegisterUser = async () => {
+    //     if (!user) return
+    //
+    //     try {
+    //         const pointsData = await fetchUserPoints(String(user.id))
+    //         setPoints(pointsData.points_balance)
+    //         console.log('User found, points loaded')
+    //     } catch (error) {
+    //         console.log('User not found, starting registration')
+    //         await registerUserFlow()
+    //     }
+    // }
+    //
+    // const registerUserFlow = async () => {
+    //     if (!user) return
+    //
+    //     try {
+    //         const referralIdRaw = tg.initDataUnsafe?.start_param
+    //         const referralId = referralIdRaw?.replace(/\D/g, '')
+    //
+    //         if(referralId) {
+    //             await registerUserWithReferral(String(user.id), user.username || 'Unknown', referralId)
+    //             console.log('User registered with referralId: ', referralId)
+    //         } else {
+    //             await registerUser(String(user.id), user.username)
+    //             console.log('User registered without referral')
+    //         }
+    //
+    //         const pointsData = await fetchUserPoints(String(user.id))
+    //         setPoints(pointsData.points_balance);
+    //     } catch (error) {
+    //         console.log('Error during registration', error);
+    //     }
+    //
+    // }
 
     const updatePoints = async () => {
         try {
@@ -71,7 +77,7 @@ export const App = () => {
             tg.disableVerticalSwipes()
             expand();
             try {
-                await checkAndRegisterUser();
+                // await checkAndRegisterUser();
             } catch (error) {
                 console.error('Error during registration:', error);
             }
@@ -90,19 +96,9 @@ export const App = () => {
         });
     }, []);
 
-
-    // if(isLoading) {
-    //     return (
-    //         <div className={`${fadeOut}`}>
-    //             <BackgroundDots/>
-    //             <WelcomeScreenTest/>
-    //         </div>
-    //     )
-    // }
-
-
     return (
         <TonConnectUIProvider manifestUrl={manifestUrl}>
+            <AuthContextProvider>
             <Router>
                 {isLoading && (
                     <div className={`${fadeOut}`}>
@@ -120,6 +116,7 @@ export const App = () => {
                     </Routes>
                 </div>
             </Router>
+            </AuthContextProvider>
         </TonConnectUIProvider>
     );
 };
